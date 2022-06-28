@@ -136,7 +136,7 @@ const CostsListsByBalanceId = ({route, navigation}) => {
               if (!item?.add_balance) {
                 setLearnMoreModalVisible(true);
                 setSelectedItem(item);
-                console.error('Selecteditem => ', item);
+                // console.error('Selecteditem => ', item);
               }
             }}>
             <SwipeProvider>

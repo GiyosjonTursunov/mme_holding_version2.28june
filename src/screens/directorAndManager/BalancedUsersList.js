@@ -36,6 +36,7 @@ const BalancedUsersList = ({navigation}) => {
   const [selectedCompany, setSelectedCompany] = useState('LaStoria');
 
   const getUsersList = async () => {
+    // console.log(token);
     setRefreshing(true);
     const resultUsers = await axios.get(
       mainUrl + `dashboard/balance/list/${selectedCompany}/`,
@@ -47,6 +48,7 @@ const BalancedUsersList = ({navigation}) => {
     );
 
     if ((resultUsers.status = '200')) {
+      // console.warn('resultUsers.data => ', resultUsers.data);
       setUsers(resultUsers.data);
       setRefreshing(false);
     } else {
@@ -178,7 +180,11 @@ const BalancedUsersList = ({navigation}) => {
               {item?.reported_balance?.length > 0 ? (
                 <TouchableOpacity
                   style={tw`mx-auto`}
-                  onPress={() => navigation.navigate('ReportedBalancesList')}>
+                  onPress={() =>
+                    navigation.navigate('ReportedBalancesList', {
+                      balance_id: item?.id,
+                    })
+                  }>
                   <Image
                     source={require('../../../assets/notificationIcon.png')}
                     resizeMode="contain"
