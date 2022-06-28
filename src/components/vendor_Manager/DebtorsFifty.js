@@ -102,7 +102,9 @@ const DebtorsFifty = () => {
 
   useEffect(() => {
     // console.error(token);
-    getData();
+    if (token) {
+      getData();
+    }
   }, [token]);
 
   const sendDebt = () => {

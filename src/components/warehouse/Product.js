@@ -39,8 +39,10 @@ const Product = () => {
   };
 
   useEffect(() => {
-    getAllProducts();
-  }, []);
+    if (token) {
+      getAllProducts();
+    }
+  }, [token]);
 
   const convertAmount = amount => {
     if (amount === 1) {

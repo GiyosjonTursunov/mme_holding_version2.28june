@@ -22,22 +22,23 @@ const MainPageScreen = () => {
   const {token} = useSelector(state => state.userReducer);
 
   useEffect(() => {
-    // console.warn(token);
-    axios({
-      url: `${mainUrl}dashboard/companies/`,
-      method: 'GET',
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    })
-      .then(res => {
-        setCompanies(res.data);
-        // console.warn(res.data, 'error ham shu res ham');
+    if (token) {
+      axios({
+        url: `${mainUrl}dashboard/companies/`,
+        method: 'GET',
+        headers: {
+          Authorization: `token ${token}`,
+        },
       })
-      .catch(_err => {
-        return;
-        // console.error(_err, 'error ham shu res ham');
-      });
+        .then(res => {
+          setCompanies(res.data);
+          // console.warn(res.data, 'error ham shu res ham');
+        })
+        .catch(_err => {
+          return;
+          // console.error(_err, 'error ham shu res ham');
+        });
+    }
   }, [token]);
 
   const Item = ({img}) => (
@@ -89,19 +90,6 @@ const MainPageScreen = () => {
           setIsAbout(false);
         }}
       />
-
-      {/* <View style={tw`w-full flex-row justify-between px-4 items-center`}>
-        <Text style={tw`text-xl`}>Kompaniyalar</Text>
-        <TouchableOpacity
-          onPress={() => {
-            return;
-          }}>
-          <Image
-            source={require('../../../assets/plus.png')}
-            style={tw`w-10 h-10`}
-          />
-        </TouchableOpacity>
-      </View> */}
 
       <View style={tw`h-35`}>
         <FlatList

@@ -88,7 +88,7 @@ const AddBalanceToUsers = () => {
             height: 1,
           },
           elevation: 3,
-          backgroundColor: '#ffff',
+          backgroundColor: selectedCompany === id ? '#00E228' : 'white',
         },
       ]}>
       <Image

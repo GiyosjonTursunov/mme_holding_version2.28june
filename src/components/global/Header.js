@@ -65,6 +65,7 @@ const Header = ({headerName, isRegister}) => {
     const unsubscribe = NetInfo.addEventListener(state => {
       setIsConnected(state.isConnected);
     });
+
     return unsubscribe;
   }, [isConnected]);
 

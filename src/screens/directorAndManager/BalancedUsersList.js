@@ -112,7 +112,7 @@ const BalancedUsersList = ({navigation}) => {
       <View style={tw`flex-row items-center`}>
         <ScrollView
           horizontal
-          style={tw`w-10/12`}
+          style={tw`w-10/12 mt-2`}
           showsHorizontalScrollIndicator={false}>
           <TouchableOpacity
             onPress={() => setSelectedCompany('LaStoria')}

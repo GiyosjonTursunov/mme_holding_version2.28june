@@ -57,8 +57,10 @@ const DebtorsSales = () => {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    if (token) {
+      getData();
+    }
+  }, [token]);
 
   const sendDebt = () => {
     axios({

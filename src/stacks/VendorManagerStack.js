@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setWsVendorManagerSale} from '../redux/actions';
 import {wsSaleManager} from '../config/apiUrl';
 import {AppState} from 'react-native';
+import CostsRegister from '../screens/directorAndManager/CostsRegister';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +52,7 @@ const VendorManagerStack = () => {
       <Stack.Screen name="SaleDress" component={SaleDress} />
       <Stack.Screen name="ReportSales" component={ReportSales} />
       <Stack.Screen name="DebtorsScreen" component={DebtorsScreen} />
+      <Stack.Screen name="CostsRegister" component={CostsRegister} />
     </Stack.Navigator>
   );
 };

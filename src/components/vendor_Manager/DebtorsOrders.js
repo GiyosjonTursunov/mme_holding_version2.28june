@@ -62,8 +62,10 @@ const DebtorsOrders = () => {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    if (token) {
+      getData();
+    }
+  }, [token]);
 
   const sendDebt = () => {
     // console.warn(dataSenDebt);

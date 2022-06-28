@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import {
   View,
@@ -19,8 +20,10 @@ import * as ImagePicker from 'react-native-image-picker';
 const {useState, useEffect, useCallback} = React;
 import {mainUrl} from '../../config/apiUrl';
 import {ImagePickerModal} from '../../screens/directorAndManager/modals/image-picker-modal';
+import {useSelector} from 'react-redux';
 
 const AddProduct = () => {
+  const {token} = useSelector(state => state.userReducer);
   const [allProducts, setAllProducts] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalProduct, setModalProduct] = useState(false);
@@ -77,9 +80,7 @@ const AddProduct = () => {
         body: formDataWareHouseProduct,
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `token ${
-            JSON.parse(await AsyncStorage.getItem('@user')).token
-          }`,
+          Authorization: `token ${token}`,
         },
       });
       let responseJson = await res.json();
@@ -119,7 +120,7 @@ const AddProduct = () => {
             method: 'POST',
             data: dataAddProduct,
             headers: {
-              Authorization: `token ${JSON.parse(stringJson).token}`,
+              Authorization: `token ${token}`,
             },
           })
             .then(res => {
@@ -154,7 +155,7 @@ const AddProduct = () => {
           url: `${mainUrl}lastoria/warehouse-product/`,
           method: 'GET',
           headers: {
-            Authorization: `token ${JSON.parse(stringJson).token}`,
+            Authorization: `token ${token}`,
           },
         })
           .then(res => {
@@ -174,8 +175,10 @@ const AddProduct = () => {
   };
 
   useEffect(() => {
-    getAllProducts();
-  }, []);
+    if (token) {
+      getAllProducts();
+    }
+  }, [token]);
 
   const convertAmount = amount => {
     if (amount === 1) {
