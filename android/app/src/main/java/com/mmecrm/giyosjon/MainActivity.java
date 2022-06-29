@@ -1,9 +1,11 @@
+package com.mmecrm.giyosjon;
+
 import android.os.Bundle;
-package com.mme_holding;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import com.mmecrm.giyosjon.BuildConfig;
 
 public class MainActivity extends ReactActivity {
 

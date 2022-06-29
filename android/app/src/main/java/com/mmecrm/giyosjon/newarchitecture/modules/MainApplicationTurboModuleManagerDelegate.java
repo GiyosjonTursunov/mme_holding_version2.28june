@@ -1,4 +1,4 @@
-package com.mme_holding.newarchitecture.modules;
+package com.mmecrm.giyosjon.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

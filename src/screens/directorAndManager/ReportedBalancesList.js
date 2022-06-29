@@ -98,7 +98,7 @@ const ReportedBalancesList = ({route}) => {
           <View style={tw`my-2`}>
             <View
               style={[
-                tw`w-11.2/12 h-45 mx-auto rounded-tr-xl rounded-tl-xl flex-row border-t-2 border-${
+                tw`w-11.2/12 h-40 mx-auto rounded-tr-xl rounded-tl-xl border-t-2 border-${
                   item?.is_checked ? 'green-600' : '[#E89321]'
                 }`,
                 {
@@ -121,19 +121,26 @@ const ReportedBalancesList = ({route}) => {
                   {item?.is_checked ? 'Ok' : 'Waiting'}
                 </Text>
               </View>
-              <Image
-                source={{uri: mainUrl + 'media/' + item?.user?.img}}
-                resizeMode="contain"
-                style={tw`w-18 h-18 ml-[5%] mt-[7%] rounded-full`}
-              />
-              <View style={tw`my-auto mx-auto`}>
-                <Text style={tw`text-xl font-semibold text-[#16183A]`}>
-                  {item?.user?.name}
-                </Text>
 
-                <Text style={tw`text-lg font-semibold text-gray-600`}>
-                  Role : {item?.user?.role}
-                </Text>
+              <View style={tw`flex-row items-center mt-[4%]`}>
+                <Image
+                  source={{uri: mainUrl + 'media/' + item?.user?.img}}
+                  resizeMode="contain"
+                  style={tw`w-18 h-18 ml-[4%] rounded-full`}
+                />
+
+                <View style={tw`pl-4`}>
+                  <Text style={tw`text-xl font-semibold text-[#16183A]`}>
+                    {item?.user?.name}
+                  </Text>
+
+                  <Text style={tw`text-lg font-semibold text-gray-600`}>
+                    Role : {item?.user?.role}
+                  </Text>
+                </View>
+              </View>
+
+              <View style={tw`ml-[4%]`}>
                 <Text style={tw`text-xl font-bold text-[#16183A] mt-2.5`}>
                   {convertDate(
                     item?.balance_history[0]?.date_created ||
@@ -148,25 +155,30 @@ const ReportedBalancesList = ({route}) => {
             </View>
 
             <View
-              style={tw`w-11.2/12 h-14 border-t-2 border-[rgba(0,0,0,0.4)] mx-auto flex-row bg-white rounded-br-xl rounded-bl-xl`}>
-              <TouchableOpacity
-                style={tw`w-6/12 border-r border-[rgba(0,0,0,0.4)]`}>
-                <Image
-                  source={require('../../../assets/read-more.png')}
-                  resizeMode="contain"
-                  style={tw`w-full h-11/12 m-auto`}
-                />
+              style={[
+                tw`w-11.2/12 h-14 mx-auto flex-row bg-white rounded-br-xl rounded-bl-xl`,
+                {
+                  shadowColor: '#000',
+                  shadowOpacity: 0.5,
+                  shadowRadius: 3,
+                  shadowOffset: {
+                    width: 1,
+                    height: 1,
+                  },
+                  elevation: 3,
+                  backgroundColor: 'white',
+                },
+              ]}>
+              <TouchableOpacity style={tw`w-6/12`}>
+                <Text style={tw`m-auto text-yellow-500 text-lg`}>
+                  Read More
+                </Text>
               </TouchableOpacity>
               {item?.is_checked ? null : (
                 <TouchableOpacity
                   onPress={() => updateReport(item?.id)}
-                  style={tw`w-6/12 flex-row justify-center items-center border-l border-[rgba(0,0,0,0.4)]`}>
-                  <Image
-                    source={require('../../../assets/check-mark.png')}
-                    resizeMode="contain"
-                    style={tw`w-10 h-10 my-auto`}
-                  />
-                  <Text style={tw`text-green-600 text-xl`}>Ok</Text>
+                  style={tw`w-6/12 flex-row justify-center items-center`}>
+                  <Text style={tw`text-green-600 text-xl`}>OK</Text>
                 </TouchableOpacity>
               )}
             </View>

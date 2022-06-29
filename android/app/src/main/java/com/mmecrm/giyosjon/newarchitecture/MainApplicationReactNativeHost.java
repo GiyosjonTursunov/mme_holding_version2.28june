@@ -1,4 +1,4 @@
-package com.mme_holding.newarchitecture;
+package com.mmecrm.giyosjon.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.mme_holding.BuildConfig;
-import com.mme_holding.newarchitecture.components.MainComponentsRegistry;
-import com.mme_holding.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.mmecrm.giyosjon.BuildConfig;
+import com.mmecrm.giyosjon.newarchitecture.components.MainComponentsRegistry;
+import com.mmecrm.giyosjon.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
