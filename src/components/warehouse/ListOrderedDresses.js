@@ -175,6 +175,12 @@ const ListOrderedDresses = () => {
           }
         />
       </View>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate('CostsRegister')}
+        style={tw`w-15 h-15 absolute bottom-0 right-2`}>
+        <Text style={tw`text-6xl m-auto`}>💸</Text>
+      </TouchableOpacity>
     </View>
   );
 };

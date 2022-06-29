@@ -17,8 +17,7 @@ const ThreeBtn = ({
   const [isFifty, setIsFifty] = useState(false);
 
   return (
-    <View
-      style={tw`w-10.5/12 h-14 mx-auto flex-row rounded-xl p-1 bg-[#323054]`}>
+    <View style={tw`w-11/12 h-14 mx-auto flex-row rounded-xl p-1 bg-[#323054]`}>
       <TouchableOpacity
         onPress={() => {
           firstBtnNavigation ? firstBtnNavigation() : null;

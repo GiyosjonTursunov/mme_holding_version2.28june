@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import tw from 'twrnc';
 import ListOrderedDresses from '../components/warehouse/ListOrderedDresses';
 import OrdersById from '../screens/wareHouseManager/OrdersById';
+import CostsRegister from '../screens/directorAndManager/CostsRegister';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ const DecoratorManagerStack = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="OrdersById" component={OrdersById} />
+        <Stack.Screen name="CostsRegister" component={CostsRegister} />
       </Stack.Navigator>
     </SafeAreaView>
   );

@@ -38,6 +38,12 @@ function VendorScreen_Manager() {
       </Stack.Navigator>
 
       <TouchableOpacity
+        onPress={() => navigation.navigate('CostsRegister')}
+        style={tw`w-15 h-15 absolute bottom-[23%] right-2`}>
+        <Text style={tw`text-6xl m-auto`}>💸</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
         onPress={() => navigation.navigate('DebtorsScreen')}
         style={tw`w-15 h-15 absolute bottom-[13%] right-2`}>
         <Text style={tw`text-6xl m-auto`}>💰</Text>

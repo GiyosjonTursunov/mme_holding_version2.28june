@@ -21,8 +21,8 @@ import ThreeBtn from '../../components/global/ThreeBtn';
 import tw from 'twrnc';
 import DatePickerCustom from '../../components/global/DatePickerCustom';
 
-const ListEmployees = () => {
-  const {token, role} = useSelector(state => state.userReducer);
+const ListEmployees = ({navigation}) => {
+  const {token} = useSelector(state => state.userReducer);
 
   const [employees, setEmployees] = useState([]);
 
@@ -131,23 +131,30 @@ const ListEmployees = () => {
         thirdBtnName={'TexnoStyle'}
         thirdBtnNavigation={() => setSearchName('TexnoStyle')}
       />
-      <View
-        style={tw`w-11.5/12 h-12 border border-[rgba(0,0,0,0.3)] mx-auto my-2 rounded-xl flex-row`}>
-        <Image
-          source={require('../../../assets/search.png')}
-          style={tw`w-2/12 h-8 m-auto`}
-          resizeMode="contain"
-        />
-        <TextInput
-          style={tw`w-10/12 font-600 text-lg text-left pl-3`}
-          placeholder={'Qidiruv'}
-          placeholderTextColor={'#999'}
-          onChangeText={text => {
-            if (text.length) {
-              setSearchName(text);
-            }
-          }}
-        />
+      <View style={tw`flex-row px-2`}>
+        <View
+          style={tw`w-10/12 h-12 border border-[rgba(0,0,0,0.3)] mx-auto my-2 rounded-xl flex-row`}>
+          <Image
+            source={require('../../../assets/search.png')}
+            style={tw`w-2/12 h-8 m-auto`}
+            resizeMode="contain"
+          />
+          <TextInput
+            style={tw`w-8/12 font-600 text-lg text-left pl-3`}
+            placeholder={'Qidiruv'}
+            placeholderTextColor={'#999'}
+            onChangeText={text => {
+              if (text.length) {
+                setSearchName(text);
+              }
+            }}
+          />
+        </View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('CostsRegister')}
+          style={tw`w-2/12 self-end`}>
+          <Text style={tw`text-6xl`}>💸</Text>
+        </TouchableOpacity>
       </View>
       {/* 2022-06-21 */}
       <View style={tw`pb-[${Dimensions.get('screen').height / 2.2}px]`}>
