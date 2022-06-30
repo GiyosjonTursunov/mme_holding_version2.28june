@@ -53,14 +53,6 @@ const AboutShopsScreen = ({route}) => {
         <Text style={tw`text-3xl font-semibold`}>{magazine?.money}</Text>
       </View>
 
-      {/* <View style={tw`my-[4%]`}>
-        <ThreeBtn
-          firstBtnName={'Haftalik'}
-          secondBtnName={'Oylik'}
-          thirdBtnName={'Yillik'}
-        />
-      </View> */}
-
       <AboutShopSalonStatistics
         name={"Sotilgan ko'ylaklar"}
         number={magazine?.saled_dresses}

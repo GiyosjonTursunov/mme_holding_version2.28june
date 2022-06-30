@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  Dimensions,
-  AsyncStorage,
-} from 'react-native';
+import {View, Text, Image, ScrollView, Dimensions} from 'react-native';
 import Header from '../../components/global/Header';
 import AboutShopSalonStatistics from '../../components/director/AboutShopSalonStatistics';
 import tw from 'twrnc';
@@ -33,7 +26,6 @@ const AboutSalonScreen = ({route}) => {
       })
       .catch(_err => {
         return;
-        // console.log(_err);
       });
   }, [route.params?.id, token]);
 

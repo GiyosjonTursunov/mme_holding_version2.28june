@@ -77,11 +77,19 @@ const CostSubScreen = ({navigation}) => {
         />
       </View>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate('BalancedUsersList')}
-        style={tw`h-15 bg-black w-9/12 mx-auto my-2 rounded-xl`}>
-        <Text style={tw`m-auto text-lg text-white`}>Xarajat qo'shish</Text>
-      </TouchableOpacity>
+      <View style={tw`flex-row mx-auto`}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('BalancedUsersList')}
+          style={tw`h-15 bg-black w-5/12 my-2 rounded-xl mx-2`}>
+          <Text style={tw`m-auto text-lg text-white`}>Xarajat qo'shish</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => navigation.navigate('BalancedUsersList')}
+          style={tw`h-15 bg-black w-5/12 my-2 rounded-xl mx-2`}>
+          <Text style={tw`m-auto text-lg text-white`}>Hisobotlar</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };

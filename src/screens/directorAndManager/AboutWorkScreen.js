@@ -41,12 +41,10 @@ const AboutWorkScreen = () => {
       },
     })
       .then(res => {
-        // console.error(res.data);
         setDostavkaCount(res.data);
       })
       .catch(_err => {
         return;
-        // console.error(err);
       });
     axios({
       url: `${mainUrl}dashboard/warehouse/product-count/`,
@@ -56,12 +54,10 @@ const AboutWorkScreen = () => {
       },
     })
       .then(res => {
-        // console.error(res.data);
         setProductCount(res.data);
       })
       .catch(_err => {
         return;
-        // console.error(err);
       });
 
     setTimeout(async () => {
@@ -77,7 +73,6 @@ const AboutWorkScreen = () => {
         })
         .catch(_err => {
           return;
-          // console.error(err);
         });
 
       AsyncStorage.getItem('@magazineList')
@@ -94,25 +89,21 @@ const AboutWorkScreen = () => {
             .then(res => {
               if (JSON.parse(data)?.length === res.data?.length) {
                 return;
-                // console.log('asyncstorage magazinelst bilan set qilinmadi');
               } else {
                 AsyncStorage.setItem(
                   '@magazineList',
                   JSON.stringify(res.data),
                 ).then(() => {
-                  // console.log('magazineList asyncstorageda yangilandi');
                   setMagazineList(res.data);
                 });
               }
             })
             .catch(_err => {
               return;
-              // console.error(err);
             });
         })
         .catch(_err => {
           return;
-          // console.log(err);
         });
     }, 100);
 
@@ -127,7 +118,6 @@ const AboutWorkScreen = () => {
     <SafeAreaView style={tw`bg-white flex-1`}>
       <Header headerName={'LaStoria'} />
 
-      {/* <AboutLaStoriaScreen /> */}
       <ScrollView
         style={tw`bg-white`}
         refreshControl={

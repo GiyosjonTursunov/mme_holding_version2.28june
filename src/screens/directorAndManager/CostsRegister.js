@@ -8,18 +8,13 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
-  Image,
-  FlatList,
   SafeAreaView,
   Alert,
 } from 'react-native';
 import tw from 'twrnc';
-import directorCController from '../../controllers/directorManager/create';
-import directorGController from '../../controllers/directorManager/get';
-import directorUController from '../../controllers/directorManager/update';
 import Header from '../../components/global/Header';
 import DoubleBtn from '../../components/global/DoubleBtn';
-import {baseUrl, mainUrl} from '../../config/apiUrl';
+import {mainUrl} from '../../config/apiUrl';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 
@@ -30,7 +25,7 @@ const CostsRegister = () => {
   const [soni, setSoni] = useState('');
   const [narxi, setNarxi] = useState('');
   const [note, setNote] = useState('');
-  // const [modalVisible, setModalVisible] = useState(false);
+
   const [modalReportVisible, setModalReportVisible] = useState(false);
   const [serioProchi, setSerioProchi] = useState(1);
   const [balanceByUser, setBalanceByUser] = useState([]);
@@ -57,7 +52,6 @@ const CostsRegister = () => {
   };
 
   const getBalanceById = async () => {
-    // console.error(userId);
     const resultBalance = await axios(
       mainUrl + `dashboard/balance/list/by/user/${userId}/`,
       {
@@ -68,7 +62,6 @@ const CostsRegister = () => {
     );
 
     if (resultBalance.status === 200) {
-      // console.warn(resultBalance.data, 'resultBalance.data');
       setBalanceByUser(resultBalance.data);
     } else {
       Alert.alert('Error', 'Bazaga ulanishda xatolik yuz berdi');
@@ -91,22 +84,30 @@ const CostsRegister = () => {
 
   const sendCost = async () => {
     if (xarajatNomi && soni && current) {
-      const sendedCostResult = await axios.post(
-        mainUrl + 'dashboard/balance/cost/create/',
-        dataCostsCreate,
-        {
-          headers: {
-            Authorization: `token ${token}`,
+      if (Number(balanceByUser[0]?.left_balance) - Number(narxi) >= 0) {
+        const sendedCostResult = await axios.post(
+          mainUrl + 'dashboard/balance/cost/create/',
+          dataCostsCreate,
+          {
+            headers: {
+              Authorization: `token ${token}`,
+            },
           },
-        },
-      );
+        );
 
-      if (sendedCostResult.status === 201) {
-        clearAllHooks();
-        Alert.alert('Ishlatildi');
-        getBalanceById();
+        if (sendedCostResult.status === 201) {
+          clearAllHooks();
+          Alert.alert('Ishlatildi');
+          getBalanceById();
+        } else {
+          Alert.alert('Bazaga ulanishda xatolik!');
+        }
       } else {
-        Alert.alert('Bazaga ulanishda xatolik!');
+        Alert.alert(
+          `Balansingizda yetmayotgan mablag! ${Math.abs(
+            Number(balanceByUser[0]?.left_balance) - Number(narxi),
+          )}`,
+        );
       }
     } else {
       Alert.alert('To`liq kiriting');
@@ -114,24 +115,27 @@ const CostsRegister = () => {
   };
 
   const sendReport = async () => {
-    const sendedReportResult = await axios.post(
-      mainUrl + 'dashboard/balance/reported/create/',
-      dataReport,
-      {
-        headers: {
-          Authorization: `token ${token}`,
+    if (balanceByUser[0]?.balance) {
+      const sendedReportResult = await axios.post(
+        mainUrl + 'dashboard/balance/reported/create/',
+        dataReport,
+        {
+          headers: {
+            Authorization: `token ${token}`,
+          },
         },
-      },
-    );
+      );
 
-    if (sendedReportResult.status === 201) {
-      clearAllHooks();
-      Alert.alert('Ishlatildi');
-      getBalanceById();
-      setModalReportVisible(false);
+      if (sendedReportResult.status === 201) {
+        clearAllHooks();
+        Alert.alert('Ishlatildi');
+        getBalanceById();
+        setModalReportVisible(false);
+      } else {
+        Alert.alert('Bazaga ulanishda xatolik!');
+      }
     } else {
-      // console.error('sendedReport =>', sendedReportResult);
-      Alert.alert('Bazaga ulanishda xatolik!');
+      Alert.alert('Balansingiz mavjud emas!');
     }
   };
 
@@ -213,7 +217,6 @@ const CostsRegister = () => {
             style={tw`flex-row my-2 justify-around items-center mx-auto h-13`}>
             <TouchableOpacity
               onPress={() => setCurrent(4)}
-              // 1 bolsa dona 2 bolsa kg 3 bolsa metr
               style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
               <Text style={tw`m-auto`}>
                 Litr
@@ -288,7 +291,7 @@ const CostsRegister = () => {
                       onPress={sendReport}>
                       <Text
                         style={tw`m-auto text-base font-semibold text-white`}>
-                        Qo'shish
+                        Jo'natish
                       </Text>
                     </TouchableOpacity>
                   </TouchableOpacity>
