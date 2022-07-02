@@ -6,6 +6,7 @@ import ListOrderedDresses from '../components/warehouse/ListOrderedDresses';
 import OrdersById from '../screens/wareHouseManager/OrdersById';
 import WareHouseScreen from '../screens/wareHouseManager/WareHouseScreen';
 import CostsRegister from '../screens/directorAndManager/CostsRegister';
+import ListEmployees from '../screens/marketing/ListEmployees';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ const WareHouseManagerStack = () => {
         <Stack.Screen name="WareHouseScreen" component={WareHouseScreen} />
         <Stack.Screen name="OrdersById" component={OrdersById} />
         <Stack.Screen name="CostsRegister" component={CostsRegister} />
+        <Stack.Screen name="ListEmployees" component={ListEmployees} />
       </Stack.Navigator>
     </SafeAreaView>
   );

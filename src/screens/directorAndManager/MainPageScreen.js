@@ -32,11 +32,9 @@ const MainPageScreen = () => {
       })
         .then(res => {
           setCompanies(res.data);
-          // console.warn(res.data, 'error ham shu res ham');
         })
         .catch(_err => {
           return;
-          // console.error(_err, 'error ham shu res ham');
         });
     }
   }, [token]);

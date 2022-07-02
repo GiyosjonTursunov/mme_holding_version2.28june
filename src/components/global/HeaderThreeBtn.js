@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import tw from 'twrnc';
@@ -16,14 +17,12 @@ const HeaderThreeBtn = ({
   const [isSale, setIsSale] = React.useState(false);
   const [isFifty, setIsFifty] = React.useState(false);
 
-  const newLocal = '#242424';
-
   return (
     <View style={tw`flex-col justify-around mb-[3%]`}>
       <View
         style={[
           tw`w-5/6 h-12 mx-auto mt-[8%] flex-row border rounded-2xl p-1`,
-          {backgroundColor: newLocal},
+          {backgroundColor: '#242424'},
         ]}>
         <TouchableOpacity
           onPress={() => {

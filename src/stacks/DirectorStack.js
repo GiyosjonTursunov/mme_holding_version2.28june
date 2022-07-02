@@ -9,17 +9,15 @@ import AboutSalonScreen from '../screens/directorAndManager/AboutSalonScreen';
 import ReportScreen from '../screens/directorAndManager/ReportScreen';
 import DailySalesStatisticsScreen from '../screens/directorAndManager/DailySalesStatisticsScreen';
 import OrdersById from '../screens/wareHouseManager/OrdersById';
-// import CostsRegister from '../screens/directorAndManager/CostsRegister';
 import AddBalanceToUsers from '../screens/directorAndManager/AddBalanceToUsers';
 import BalancedUsersList from '../screens/directorAndManager/BalancedUsersList';
 import CostsListsByBalanceId from '../screens/directorAndManager/CostsListsByBalanceId';
 import ReportedBalancesList from '../screens/directorAndManager/ReportedBalancesList';
-// import DailySalesOrders from '../components/vendor_Manager/DailySalesOrders';
+import ListEmployees from '../screens/marketing/ListEmployees';
 
 const Stack = createNativeStackNavigator();
 
 const DirectorStack = () => {
-  // DailySalesOrders
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -48,7 +46,7 @@ const DirectorStack = () => {
         name="CostsListsByBalanceId"
         component={CostsListsByBalanceId}
       />
-      {/* <Stack.Screen name="DailySalesOrders" component={OrdersById} /> */}
+      <Stack.Screen name="ListEmployees" component={ListEmployees} />
     </Stack.Navigator>
   );
 };

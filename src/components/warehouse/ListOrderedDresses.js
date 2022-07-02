@@ -18,6 +18,7 @@ import {mainUrl, wsSaleManager} from '../../config/apiUrl';
 import {useSelector} from 'react-redux';
 import {useMemo} from 'react';
 import {w3cwebsocket as W3CWebSocket} from 'websocket';
+import ThreeBtn from '../global/ThreeBtn';
 
 const ListOrderedDresses = () => {
   const navigation = useNavigation();
@@ -155,16 +156,16 @@ const ListOrderedDresses = () => {
         <RefreshControl onRefresh={getOrder} refreshing={refreshing} />
       }>
       <Header headerName={'Buyurtmalar'} />
-
       {role === 'DECORATOR_MANAGER' || role === 'DIRECTOR' ? null : (
-        <DoubleBtn
+        <ThreeBtn
           firstBtnName={'Buyurtmalar'}
-          firstBtnFunction={() => navigation.navigate('ListOrderedDresses')}
+          firstBtnNavigation={() => navigation.navigate('ListOrderedDresses')}
           secondBtnName={'Ombor'}
-          secondBtnFunction={() => navigation.navigate('WareHouseScreen')}
+          secondBtnNavigation={() => navigation.navigate('WareHouseScreen')}
+          thirdBtnName={'Xodimlar'}
+          thirdBtnNavigation={() => navigation.navigate('ListEmployees')}
         />
       )}
-
       <View style={tw`w-full h-${Dimensions.get('screen').height / 5.6}`}>
         <FlatList
           data={salonList}
@@ -175,7 +176,6 @@ const ListOrderedDresses = () => {
           }
         />
       </View>
-
       <TouchableOpacity
         onPress={() => navigation.navigate('CostsRegister')}
         style={tw`w-15 h-15 absolute bottom-0 right-2`}>
