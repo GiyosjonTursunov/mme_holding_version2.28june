@@ -151,7 +151,7 @@ const ListOrderedDresses = () => {
 
   return (
     <View
-      style={tw`flex-1 bg-white pt-5`}
+      style={tw`flex-1 bg-white`}
       refreshControl={
         <RefreshControl onRefresh={getOrder} refreshing={refreshing} />
       }>

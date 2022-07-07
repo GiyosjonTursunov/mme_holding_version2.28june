@@ -1,0 +1,824 @@
+[
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-27",
+    "first_name": "Zilola",
+    "id": 91,
+    "last_name": "Pirboeva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": null,
+    "start_work_date": "2022-02-01",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-27",
+    "first_name": "Moxinur",
+    "id": 90,
+    "last_name": "Esonova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-01-23",
+    "salary_date_future": "2022-02-21",
+    "start_work_date": "2022-01-23",
+    "workedDays": 163,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-27",
+    "first_name": "Yulduz",
+    "id": 89,
+    "last_name": "Saidova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-04-14",
+    "salary_date_future": "2022-05-13",
+    "start_work_date": "2022-04-14",
+    "workedDays": 82,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-27",
+    "first_name": "Iroda",
+    "id": 87,
+    "last_name": "Erkinova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": null,
+    "start_work_date": "2022-06-25",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-25",
+    "first_name": "Sarvinoz",
+    "id": 86,
+    "last_name": "Mamadalieva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-22", "id": 16, "name": "Media"},
+    "salary_date": "2022-06-06",
+    "salary_date_future": "2022-07-05",
+    "start_work_date": "2022-06-06",
+    "workedDays": 29,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-25",
+    "first_name": "Madina",
+    "id": 85,
+    "last_name": "Nematova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-09",
+    "salary_date_future": "2022-07-08",
+    "start_work_date": "2022-06-09",
+    "workedDays": 26,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-25",
+    "first_name": "Nilufar",
+    "id": 83,
+    "last_name": "Sheralieva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-01",
+    "start_work_date": "2021-12-20",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-25",
+    "first_name": "Mexribon",
+    "id": 81,
+    "last_name": "Maxmudova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-10",
+    "start_work_date": "2021-08-01",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-25",
+    "first_name": "Laylo",
+    "id": 79,
+    "last_name": "Najimova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": null,
+    "start_work_date": "2022-06-18",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-25",
+    "first_name": "Shoirjon",
+    "id": 77,
+    "last_name": "Maxmudov",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-22", "id": 16, "name": "Media"},
+    "salary_date": "2022-06-27",
+    "start_work_date": "2022-06-27",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-23",
+    "first_name": "Diyora",
+    "id": 74,
+    "last_name": "Ergasheva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-22", "id": 19, "name": "Sotuvchi"},
+    "salary_date": null,
+    "start_work_date": "2020-12-01",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-23",
+    "first_name": "Shokhsanam",
+    "id": 72,
+    "last_name": "Abdukarimova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-22", "id": 19, "name": "Sotuvchi"},
+    "salary_date": null,
+    "start_work_date": "2022-06-16",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-23",
+    "first_name": "Zarinabonu",
+    "id": 71,
+    "last_name": "Suvonova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-22", "id": 19, "name": "Sotuvchi"},
+    "salary_date": "2022-06-01",
+    "salary_date_future": "2022-06-30",
+    "start_work_date": "2022-06-01",
+    "workedDays": 34,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-23",
+    "first_name": "Madina",
+    "id": 70,
+    "last_name": "Kitapova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-22", "id": 19, "name": "Sotuvchi"},
+    "salary_date": "2021-12-01",
+    "salary_date_future": "2021-12-30",
+    "start_work_date": "2021-12-01",
+    "workedDays": 216,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Jaykhun",
+    "id": 69,
+    "last_name": "Matyokubov",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-22", "id": 16, "name": "Media"},
+    "salary_date": "2022-02-19",
+    "salary_date_future": "2022-03-21",
+    "start_work_date": "2022-02-19",
+    "workedDays": 136,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Khudoyorbek",
+    "id": 57,
+    "last_name": "Valijonov",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-22", "id": 18, "name": "Grafik Dizayner"},
+    "salary_date": "2022-04-05",
+    "salary_date_future": "2022-05-04",
+    "start_work_date": "2022-04-05",
+    "workedDays": 91,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Saydullo",
+    "id": 56,
+    "last_name": "Sotvoldiev",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-22", "id": 16, "name": "Media"},
+    "salary_date": "2022-06-07",
+    "salary_date_future": "2022-07-06",
+    "start_work_date": "2022-06-07",
+    "workedDays": 28,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Muhammadsiddiq",
+    "id": 54,
+    "last_name": "Solihov",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-22", "id": 18, "name": "Grafik Dizayner"},
+    "salary_date": "2022-06-07",
+    "salary_date_future": "2022-07-06",
+    "start_work_date": "2022-06-07",
+    "workedDays": 28,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Zulkhumor",
+    "id": 51,
+    "last_name": "Orifova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 11, "name": "Tikuvchi"},
+    "salary_date": "2022-06-01",
+    "start_work_date": "2022-02-23",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Sitora",
+    "id": 50,
+    "last_name": "Ergasheva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 7, "name": "Dizayner"},
+    "salary_date": "2022-02-23",
+    "salary_date_future": "2022-03-24",
+    "start_work_date": "2022-02-23",
+    "workedDays": 132,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Ziyoda",
+    "id": 49,
+    "last_name": "Ismailova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 11, "name": "Tikuvchi"},
+    "salary_date": "2022-06-10",
+    "salary_date_future": "2022-07-09",
+    "start_work_date": "2022-03-01",
+    "workedDays": 25,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Matluba",
+    "id": 48,
+    "last_name": "Berdieva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 11, "name": "Tikuvchi"},
+    "salary_date": "2022-06-10",
+    "salary_date_future": "2022-07-09",
+    "start_work_date": "2022-01-26",
+    "workedDays": 25,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Shalola",
+    "id": 46,
+    "last_name": "Jumaeva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-20",
+    "start_work_date": "2022-04-13",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Nigora",
+    "id": 44,
+    "last_name": "Talabova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-20",
+    "start_work_date": "2022-04-13",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Saida",
+    "id": 42,
+    "last_name": "Meliyeva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 13, "name": "Oshpaz"},
+    "salary_date": "2022-06-10",
+    "start_work_date": "2021-10-06",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Oltinoy",
+    "id": 40,
+    "last_name": "Shoqulova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-01",
+    "start_work_date": "2021-11-28",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Dilovar",
+    "id": 39,
+    "last_name": "To'yboyeva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2021-01-01",
+    "salary_date_future": "2021-01-30",
+    "start_work_date": "2021-01-01",
+    "workedDays": 550,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Nargiza",
+    "id": 38,
+    "last_name": "Fayzulloyeva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-01",
+    "salary_date_future": "2022-06-30",
+    "start_work_date": "2022-09-22",
+    "workedDays": 34,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Sabinabonu",
+    "id": 37,
+    "last_name": "Isroilova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-10",
+    "salary_date_future": "2022-07-09",
+    "start_work_date": "2022-09-01",
+    "workedDays": 25,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Dildora",
+    "id": 36,
+    "last_name": "Mansurova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-10",
+    "salary_date_future": "2022-07-09",
+    "start_work_date": "2020-10-22",
+    "workedDays": 25,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Eva",
+    "id": 35,
+    "last_name": "Teryan",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2020-09-16",
+    "salary_date_future": "2020-10-15",
+    "start_work_date": "2020-09-16",
+    "workedDays": 657,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Navbaxor",
+    "id": 33,
+    "last_name": "Boyjonova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-10",
+    "start_work_date": "2022-04-25",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Ziyoda",
+    "id": 32,
+    "last_name": "Sadriddinova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-10",
+    "salary_date_future": "2022-07-09",
+    "start_work_date": "2021-02-10",
+    "workedDays": 25,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "G'iyosova",
+    "id": 31,
+    "last_name": "Zilola",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2021-01-01",
+    "salary_date_future": "2021-01-30",
+    "start_work_date": "2021-01-01",
+    "workedDays": 550,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-22",
+    "first_name": "Moxina",
+    "id": 30,
+    "last_name": "Sharipova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-10",
+    "salary_date_future": "2022-07-09",
+    "start_work_date": "2020-08-06",
+    "workedDays": 25,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-20",
+    "first_name": "Roxila",
+    "id": 28,
+    "last_name": "Xushvaqova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 11, "name": "Tikuvchi"},
+    "salary_date": "2022-06-10",
+    "start_work_date": "2019-06-01",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-20",
+    "first_name": "Moxinur",
+    "id": 26,
+    "last_name": "Narzullaeva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 11, "name": "Tikuvchi"},
+    "salary_date": null,
+    "start_work_date": "2020-12-01",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-20",
+    "first_name": "Laylo",
+    "id": 24,
+    "last_name": "O'ktamova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 9, "name": "Karsetchi"},
+    "salary_date": "2022-06-20",
+    "start_work_date": "2019-07-01",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-20",
+    "first_name": "Dinara",
+    "id": 22,
+    "last_name": "Odilova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 8, "name": "Master"},
+    "salary_date": null,
+    "start_work_date": "2012-01-01",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-20",
+    "first_name": "Sitora",
+    "id": 20,
+    "last_name": "Xaydarova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 7, "name": "Dizayner"},
+    "salary_date": "2022-06-01",
+    "start_work_date": "2021-01-01",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-20",
+    "first_name": "Dilshod",
+    "id": 18,
+    "last_name": "Sultonov",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 7, "name": "Dizayner"},
+    "salary_date": "2022-06-20",
+    "start_work_date": "2021-07-21",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-20",
+    "first_name": "Diyor",
+    "id": 10,
+    "last_name": "Xamidov",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 14, "name": "Buxgalter"},
+    "salary_date": "2022-06-20",
+    "start_work_date": "2012-01-01",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-20",
+    "first_name": "Mexriddin",
+    "id": 9,
+    "last_name": "Maxmudov",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 1, "name": "Raxbar"},
+    "salary_date": "2012-01-01",
+    "salary_date_future": "2012-01-30",
+    "start_work_date": "2012-01-01",
+    "workedDays": 3838,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-20",
+    "first_name": "Zoidova",
+    "id": 8,
+    "last_name": "Gulchekhra",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 12, "name": "Bezakchi"},
+    "salary_date": "2022-06-10",
+    "salary_date_future": "2022-07-09",
+    "start_work_date": "2022-06-10",
+    "workedDays": 25,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-18",
+    "first_name": "Laylo",
+    "id": 6,
+    "last_name": "Esanmurodova",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 5, "name": "Komerayter"},
+    "salary_date": "2022-06-03",
+    "start_work_date": "2022-06-03",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-18",
+    "first_name": "Nargiza",
+    "id": 4,
+    "last_name": "Alashbaeva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 7, "name": "Dizayner"},
+    "salary_date": "2022-06-01",
+    "start_work_date": "2022-04-01",
+    "workedDays": 0,
+    "worker_date_work": []
+  },
+  {
+    "company": {
+      "id": 1,
+      "img": "/media/Companies/2022/06/Lastoria_logo_curves.png",
+      "name": "LaStoria"
+    },
+    "date_created": "2022-06-18",
+    "first_name": "Shakhnoza",
+    "id": 2,
+    "last_name": "Pardaeva",
+    "numNotWorkedDays": 0,
+    "role": {"date_created": "2022-06-18", "id": 11, "name": "Tikuvchi"},
+    "salary_date": "2022-06-01",
+    "start_work_date": "2022-04-28",
+    "workedDays": 0,
+    "worker_date_work": []
+  }
+]
