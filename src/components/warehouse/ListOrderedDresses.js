@@ -11,7 +11,7 @@ import {
 import React, {useState, useEffect} from 'react';
 import tw from 'twrnc';
 import {useNavigation} from '@react-navigation/native';
-import DoubleBtn from '../global/DoubleBtn';
+// import DoubleBtn from '../global/DoubleBtn';
 import Header from '../global/Header';
 import axios from 'axios';
 import {mainUrl, wsSaleManager} from '../../config/apiUrl';

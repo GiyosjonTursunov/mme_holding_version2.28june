@@ -19,6 +19,8 @@ import ImageZoom from 'react-native-image-pan-zoom';
 
 import {mainUrl} from '../../config/apiUrl';
 
+// shu yerdan turib agar uzgartirishni xohlasa yangi edit oynasiga jonatilib yuboriladi, agar uni role vendor yoki vendor_manager bolsa
+
 const OrdersById = ({route}) => {
   const [sale, setSale] = useState([]);
   const [dressImg, setDressImg] = useState([]);
