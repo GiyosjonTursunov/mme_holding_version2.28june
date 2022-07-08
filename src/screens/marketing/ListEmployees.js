@@ -135,6 +135,31 @@ const ListEmployees = ({navigation}) => {
     }
   };
 
+  const updateSalaryDate = async () => {
+    const dataSortedId = employees.map(item => {
+      return {id: item.id};
+    });
+
+    // console.warn('dataSortedId =>', dataSortedId);
+
+    const resultUpdate = axios.put(
+      mainUrl + 'dashboard/workers/update/work/',
+      dataSortedId,
+      {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      },
+    );
+
+    if ((await resultUpdate).status === 200) {
+      Alert.alert('Данные успешно отправлены');
+      getEmployees();
+    } else {
+      Alert.alert('Ошибка при отправке данных');
+    }
+  };
+
   return (
     <SafeAreaView style={tw`bg-white flex-1`}>
       {role === 'MARKETOLOG' && <Header headerName={'Marketing'} />}
@@ -338,7 +363,7 @@ const ListEmployees = ({navigation}) => {
 
       {typesForUrl === 'all/' ? null : (
         <TouchableOpacity
-          onPress={() => console.warn('shu malumotlarni bazaga yuborish kerak')}
+          onPress={updateSalaryDate}
           style={tw`w-6/12 h-12 border mx-auto bg-black rounded-3xl my-2`}>
           <Text style={tw`text-xl text-white m-auto`}>Oylik berildi</Text>
         </TouchableOpacity>
