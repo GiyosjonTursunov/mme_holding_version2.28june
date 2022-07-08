@@ -87,8 +87,8 @@ const ListEmployees = ({navigation}) => {
           setEmployees(res.data);
           setRefreshing(false);
         })
-        .catch(err => {
-          console.error('error', err);
+        .catch(_err => {
+          // console.error('error', err);
           setRefreshing(false);
         });
     }
