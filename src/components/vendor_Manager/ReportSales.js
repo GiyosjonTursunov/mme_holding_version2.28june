@@ -1,3 +1,5 @@
+/* eslint-disable curly */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import {
   View,
@@ -27,38 +29,41 @@ const ReportSales = () => {
   const [note, setNote] = useState();
 
   const [refreshing, setRefreshing] = useState(false);
-  const [red, setRed] = useState(true);
+
+  const getDailyReportSalesMoney = () => {
+    setRefreshing(true);
+    axios({
+      url: `${mainUrl}lastoria/all-sales-daily-reports/`,
+      method: 'GET',
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    })
+      .then(res => {
+        console.warn(res.data);
+        setMainPrice(res.data.main_price);
+        setGivenPrice(res.data.given_price);
+        setLeftPrice(res.data.left_price);
+        setSalonGivenPrice(res.data.salon_given_price);
+        setMortgage(res.data.mortgage);
+        setRefreshing(false);
+      })
+      .catch(_err => {
+        setMainPrice(0);
+        Alert.alert('Ошибка', 'Не удалось получить данные');
+        setRefreshing(false);
+        console.error(_err);
+      });
+  };
 
   useEffect(() => {
-    if (red) {
-      setRefreshing(true);
-      axios({
-        url: `${mainUrl}lastoria/all-sales-daily-reports/`,
-        method: 'GET',
-        headers: {
-          Authorization: `token ${token}`,
-        },
-      })
-        .then(res => {
-          setMainPrice(res.data.main_price);
-          setGivenPrice(res.data.given_price);
-          setLeftPrice(res.data.left_price);
-          setSalonGivenPrice(res.data.salon_given_price);
-          setMortgage(res.data.mortgage);
-          setRefreshing(false);
-          setRed(false);
-        })
-        .catch(_err => {
-          setMainPrice(0);
-          Alert.alert('Ошибка', 'Не удалось получить данные');
-          setRefreshing(false);
-          setRed(false);
-          // console.error(_err);
-        });
+    if (token) {
+      getDailyReportSalesMoney();
     }
-  }, [red, token]);
+  }, [token]);
 
   const sendReport = () => {
+    if (!mainPrice) return Alert.alert('Ошибка', 'Не указана сумма продаж');
     const reporData = {
       salon_given_price: salonGivenPrice,
       total_price: mainPrice,
@@ -83,8 +88,8 @@ const ReportSales = () => {
         setDollar('0');
         setNote('');
         setMortgage('0');
-        setRed(true);
         Alert.alert('Отчет отправлен');
+        getDailyReportSalesMoney();
       })
       .catch(() => {
         Alert.alert('Ошибка', 'Не удалось отправить отчет');
@@ -97,7 +102,7 @@ const ReportSales = () => {
       refreshControl={
         <RefreshControl
           refreshing={refreshing}
-          onRefresh={() => setRed(true)}
+          onRefresh={getDailyReportSalesMoney}
         />
       }>
       <View style={tw`w-5/12 h-10 mx-auto my-5 border-b`}>

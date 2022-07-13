@@ -17,30 +17,31 @@ const VendorManagerStack = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(setWsVendorManagerSale(new WebSocket(wsSaleManager)));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(setWsVendorManagerSale(new WebSocket(wsSaleManager)));
+  // }, [dispatch]);
 
-  useEffect(() => {
-    if (wsVendorManagerSale) {
-      // wsVendorManagerSale.onopen = () => {
-      //   console.error('wsVendorManagerSales open');
-      // };
-      AppState.addEventListener('change', nextAppState => {
-        // console.error('nextAppState', nextAppState);
-        if (nextAppState === 'background') {
-          // close connection
-          return wsVendorManagerSale.close();
-        }
-      });
-    }
-
-    // return () => {
-    //   AppState.removeEventListener('change', () => {
-    //     console.error('nima gap');
-    //   });
-    // };
-  }, [wsVendorManagerSale]);
+  // useEffect(() => {
+  //   if (wsVendorManagerSale) {
+  //     // wsVendorManagerSale.onopen = () => {
+  //     //   console.error('wsVendorManagerSales open');
+  //     // };
+  //     AppState.addEventListener('change', nextAppState => {
+  //       // console.error('nextAppState', nextAppState);
+  //       if (nextAppState === 'background') {
+  //         // close connection
+  //         console.warn(nextAppState);
+  //         console.error('close connection');
+  //         return wsVendorManagerSale.close();
+  //       } else if (nextAppState === 'active') {
+  //         // open connection
+  //         console.warn(nextAppState);
+  //         console.error('open connectionmanager');
+  //         // wsVendorManagerSale.open();
+  //       }
+  //     });
+  //   }
+  // }, [wsVendorManagerSale]);
 
   return (
     <Stack.Navigator>

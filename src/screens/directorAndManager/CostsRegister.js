@@ -10,6 +10,7 @@ import {
   Modal,
   SafeAreaView,
   Alert,
+  RefreshControl,
 } from 'react-native';
 import tw from 'twrnc';
 import Header from '../../components/global/Header';
@@ -29,6 +30,8 @@ const CostsRegister = () => {
   const [modalReportVisible, setModalReportVisible] = useState(false);
   const [serioProchi, setSerioProchi] = useState(1);
   const [balanceByUser, setBalanceByUser] = useState([]);
+
+  const [refreshing, setRefreshing] = useState(false);
 
   const [current, setCurrent] = useState('');
 
@@ -52,6 +55,7 @@ const CostsRegister = () => {
   };
 
   const getBalanceById = async () => {
+    setRefreshing(true);
     const resultBalance = await axios(
       mainUrl + `dashboard/balance/list/by/user/${userId}/`,
       {
@@ -63,8 +67,10 @@ const CostsRegister = () => {
 
     if (resultBalance.status === 200) {
       setBalanceByUser(resultBalance.data);
+      setRefreshing(false);
     } else {
       Alert.alert('Error', 'Bazaga ulanishda xatolik yuz berdi');
+      setRefreshing(false);
     }
   };
 
@@ -141,7 +147,11 @@ const CostsRegister = () => {
 
   return (
     <SafeAreaView style={tw`flex-1`}>
-      <ScrollView style={tw`flex-1 bg-white`}>
+      <ScrollView
+        style={tw`flex-1 bg-white`}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={getBalanceById} />
+        }>
         <Header headerName={'Xarajatlar'} />
         <DoubleBtn
           firstBtnName={'SERIO'}

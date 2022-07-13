@@ -1,6 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CostsRegister from '../screens/directorAndManager/CostsRegister';
+import CostTypesScreen from '../screens/directorAndManager/CostTypesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -8,9 +9,14 @@ const ManagerStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
+        name="CostTypesScreen"
+        component={CostTypesScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
         name="CostsRegister"
         component={CostsRegister}
-        options={{headerShown: false}}
+        // options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

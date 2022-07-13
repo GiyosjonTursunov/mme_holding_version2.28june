@@ -21,6 +21,7 @@ import SearchBar from '@pnap/react-native-search-bar';
 
 import tw from 'twrnc';
 import DatePickerCustom from '../../components/global/DatePickerCustom';
+import Employees from '../../components/renders/Employees';
 
 const ListEmployees = ({navigation}) => {
   const {token, role} = useSelector(state => state.userReducer);
@@ -62,16 +63,6 @@ const ListEmployees = ({navigation}) => {
           setRefreshing(false);
         });
     }
-  };
-
-  // get today date by formatting yyyy-mm-dd
-  const getTodayDate = () => {
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    const yyyy = today.getFullYear();
-
-    return yyyy + '-' + mm + '-' + dd;
   };
 
   useEffect(() => {
@@ -256,49 +247,12 @@ const ListEmployees = ({navigation}) => {
         data={employees}
         onEndReached={() => console.warn('hello world')}
         renderItem={({item}) => (
-          <View
-            style={tw`w-11/12 h-18 mx-auto my-2 rounded-lg ${
-              item?.worker_date_work[0] &&
-              item?.worker_date_work[0]?.work_date === getTodayDate()
-                ? 'border-red-700'
-                : null
-            } ${
-              item?.worker_date_work[0] &&
-              item?.worker_date_work[0]?.work_date === getTodayDate()
-                ? 'border-2'
-                : 'border'
-            } flex-row justify-between items-center px-1`}>
-            <View>
-              <Text style={tw`text-lg`}>{item?.first_name}</Text>
-              <View style={tw`flex-row items-center`}>
-                <Text style={tw`text-lg`}>{item?.last_name}</Text>
-                <Text style={tw`ml-2.5 text-xl text-blue-600`}>
-                  {item?.workedDays}
-                </Text>
-              </View>
-            </View>
-            <Text style={tw`text-lg m-auto absolute left-[55%]`}>
-              {item?.role?.name}
-            </Text>
-
-            {/* <Text style={tw`text-lg m-auto absolute left-[75%]`}>
-              {item?.workedDays}
-            </Text> */}
-
-            <TouchableOpacity
-              onPress={() => {
-                setIsNorm(2);
-                setDateModalVisible(true);
-                setEmployeeId(item?.id);
-              }}
-              style={tw`my-auto absolute right-2`}>
-              <Image
-                style={tw`w-10 h-10`}
-                source={require('../../../assets/minus.png')}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-          </View>
+          <Employees
+            item={item}
+            setDateModalVisible={setDateModalVisible}
+            setEmployeeId={setEmployeeId}
+            setIsNorm={setIsNorm}
+          />
         )}
         keyExtractor={item => item?.id}
       />

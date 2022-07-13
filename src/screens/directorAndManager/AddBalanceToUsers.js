@@ -25,7 +25,8 @@ const AddBalanceToUsers = () => {
 
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedUserName, setSelectedUserName] = useState('');
-  const [money, setMoney] = useState('');
+  const [money_uz, setMoney_uz] = useState('');
+  const [money_us, setMoney_us] = useState('');
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [comment, setComment] = useState('');
 
@@ -102,16 +103,32 @@ const AddBalanceToUsers = () => {
   const renderItem = ({item}) => <Item img={item.img} id={item.id} />;
 
   const sendBalance = async () => {
-    if (selectedUser && selectedCompany && money) {
-      const resultSended = await axios.post(
-        mainUrl + 'dashboard/balance/create/',
-        {
+    if (selectedUser && token && (money_us || money_uz)) {
+      let dataForSendBalance;
+      if (selectedCompany) {
+        dataForSendBalance = {
           user: selectedUser,
           company: selectedCompany,
-          balance: money,
-          left_balance: money,
+          balance_uz: money_uz || 0,
+          left_balance_uz: money_uz || 0,
+          balance_us: money_us || 0,
+          left_balance_us: money_us || 0,
           comment: comment,
-        },
+          general: false,
+        };
+      } else {
+        dataForSendBalance = {
+          user: selectedUser,
+          balance_uz: money_uz || 0,
+          left_balance_uz: money_uz || 0,
+          balance_us: money_us || 0,
+          left_balance_us: money_us || 0,
+          comment: comment,
+        };
+      }
+      const resultSended = await axios.post(
+        mainUrl + 'dashboard/balance/create/',
+        dataForSendBalance,
         {
           headers: {
             Authorization: `token ${token}`,
@@ -123,7 +140,8 @@ const AddBalanceToUsers = () => {
         Alert.alert('Success', 'Balance yuborildi');
         setSelectedUser(null);
         setSelectedUserName('');
-        setMoney('');
+        setMoney_uz('');
+        setMoney_us('');
         setSelectedCompany(null);
         setComment('');
       } else {
@@ -171,7 +189,6 @@ const AddBalanceToUsers = () => {
                       setUsersModalVisible(false);
                     }}
                     style={tw`w-full mx-auto h-15 border-b border-[rgba(0,0,0,0.3)] justify-between flex-row items-center px-3 rounded-lg mt-2`}>
-                    {/* <Text>{item?.name}</Text> */}
                     <View style={tw`flex-row items-center`}>
                       <View style={tw`w-7 h-7 my-auto bg-[#D4D8D8] ml-2`}>
                         <Text style={tw`m-auto`}>{item?.id}</Text>
@@ -189,13 +206,27 @@ const AddBalanceToUsers = () => {
         </Modal>
       </TouchableOpacity>
 
-      <TextInput
-        placeholder="Berilgan summa"
-        value={money || ''}
-        onChangeText={setMoney}
-        keyboardType="numeric"
-        style={tw`w-10/12 h-10 mx-auto my-2 border border-[rgba(0,0,0,0.3)] rounded-lg pl-2`}
-      />
+      <View>
+        <Text style={tw`ml-[8%] mt-5`}>Som</Text>
+        <TextInput
+          placeholder="Berilgan summa"
+          value={money_uz || ''}
+          onChangeText={setMoney_uz}
+          keyboardType="numeric"
+          style={tw`w-10/12 h-10 mx-auto my-2 border border-[rgba(0,0,0,0.3)] rounded-lg pl-2`}
+        />
+      </View>
+
+      <View>
+        <Text style={tw`ml-[8%] mt-5`}>Dollar</Text>
+        <TextInput
+          placeholder="Berilgan summa"
+          value={money_us || ''}
+          onChangeText={setMoney_us}
+          keyboardType="numeric"
+          style={tw`w-10/12 h-10 mx-auto my-2 border border-[rgba(0,0,0,0.3)] rounded-lg pl-2`}
+        />
+      </View>
 
       <View style={tw`h-35`}>
         <FlatList

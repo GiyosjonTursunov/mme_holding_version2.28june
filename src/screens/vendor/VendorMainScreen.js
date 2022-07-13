@@ -37,17 +37,21 @@ const VendorMainScreen = () => {
     }
   }, [dispatch, userId]);
 
-  useEffect(() => {
-    if (wsVendorManagerSale) {
-      AppState.addEventListener('change', nextAppState => {
-        if (nextAppState === 'background') {
-          // close connection
-          // console.error('close connection');
-          return wsVendorManagerSale.close();
-        }
-      });
-    }
-  }, [wsVendorManagerSale]);
+  // useEffect(() => {
+  //   if (wsVendorManagerSale) {
+  //     AppState.addEventListener('change', nextAppState => {
+  //       if (nextAppState === 'background') {
+  //         // close connection
+  //         console.error('close connection');
+  //         return wsVendorManagerSale.close();
+  //       } else if (nextAppState === 'active') {
+  //         // open connection
+  //         console.error('open connection main');
+  //         // wsVendorManagerSale.open();
+  //       }
+  //     });
+  //   }
+  // }, [wsVendorManagerSale]);
 
   return (
     <SafeAreaView style={tw`flex-1 bg-white`}>

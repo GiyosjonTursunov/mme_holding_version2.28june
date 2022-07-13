@@ -88,7 +88,7 @@ const CostTypesScreen = ({route}) => {
         fourth
       />
 
-      <CostDatePicker isSerio={isSerio} />
+      {/* <CostDatePicker isSerio={isSerio} /> */}
       <View>
         <View
           style={tw`w-11.6/12 mx-auto flex-row justify-between px-2 items-center border-b h-10`}>
