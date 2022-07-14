@@ -91,7 +91,6 @@ const LoginScreen = ({route}) => {
               return 'TexnoStyle';
             }
           };
-          // console.warn(route.params.key);
           Alert.alert(
             `Bu akkauntga faqat ${checkRole(
               data.role,
@@ -100,7 +99,7 @@ const LoginScreen = ({route}) => {
         }
       })
       .catch(_err => {
-        // console.warn('err =>', _err);
+        console.warn('err =>', _err);
         Alert.alert("Email yoki parol noto'g'ri");
       });
   };

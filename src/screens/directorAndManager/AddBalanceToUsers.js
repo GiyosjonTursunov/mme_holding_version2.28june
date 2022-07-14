@@ -104,27 +104,20 @@ const AddBalanceToUsers = () => {
 
   const sendBalance = async () => {
     if (selectedUser && token && (money_us || money_uz)) {
-      let dataForSendBalance;
+      const dataForSendBalance = {
+        user: selectedUser,
+        balance_uz: money_uz || 0,
+        balance_us: money_us || 0,
+        left_balance_uz: money_uz || 0,
+        left_balance_us: money_us || 0,
+        comment: comment,
+        types: 1,
+      };
+
       if (selectedCompany) {
-        dataForSendBalance = {
-          user: selectedUser,
-          company: selectedCompany,
-          balance_uz: money_uz || 0,
-          left_balance_uz: money_uz || 0,
-          balance_us: money_us || 0,
-          left_balance_us: money_us || 0,
-          comment: comment,
-          general: false,
-        };
+        dataForSendBalance.company = selectedCompany;
       } else {
-        dataForSendBalance = {
-          user: selectedUser,
-          balance_uz: money_uz || 0,
-          left_balance_uz: money_uz || 0,
-          balance_us: money_us || 0,
-          left_balance_us: money_us || 0,
-          comment: comment,
-        };
+        dataForSendBalance.general = true;
       }
       const resultSended = await axios.post(
         mainUrl + 'dashboard/balance/create/',

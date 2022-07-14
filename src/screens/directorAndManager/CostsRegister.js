@@ -11,16 +11,20 @@ import {
   SafeAreaView,
   Alert,
   RefreshControl,
+  FlatList,
+  Image,
 } from 'react-native';
 import tw from 'twrnc';
-import Header from '../../components/global/Header';
+// import Header from '../../components/global/Header';
 import DoubleBtn from '../../components/global/DoubleBtn';
-import {mainUrl} from '../../config/apiUrl';
+import {baseUrl, mainUrl} from '../../config/apiUrl';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 
 const CostsRegister = () => {
   const {token, userId} = useSelector(state => state.userReducer);
+
+  const [companies, setCompanies] = useState([]);
 
   const [xarajatNomi, setXarajatNomi] = useState('');
   const [soni, setSoni] = useState('');
@@ -35,14 +39,17 @@ const CostsRegister = () => {
 
   const [current, setCurrent] = useState('');
 
+  const [type, setType] = useState('sum');
+  const [selectedCompany, setSelectedCompany] = useState(null);
+
   const dataCostsCreate = {
     balance: balanceByUser[0]?.id,
     name: xarajatNomi,
     count: Number(soni),
     amount: Number(current),
-    price: Number(narxi),
+    price_uz: type === 'sum' ? Number(narxi) : 0,
+    price_us: type === 'dollar' ? Number(narxi) : 0,
     types: serioProchi,
-    company: Number(balanceByUser[0]?.company?.id),
     comment: note,
   };
 
@@ -77,43 +84,58 @@ const CostsRegister = () => {
   useEffect(() => {
     if (token && userId) {
       getBalanceById();
+      const getCompanies = async () => {
+        const resultCompanies = await axios({
+          url: `${mainUrl}dashboard/companies/`,
+          method: 'GET',
+          headers: {
+            Authorization: `token ${token}`,
+          },
+        });
+
+        if (resultCompanies.status === 200) {
+          setCompanies(resultCompanies.data);
+        } else {
+          Alert.alert('Error', 'Bazaga ulanishda xatolik yuz berdi');
+        }
+      };
+
+      getCompanies();
     }
   }, [token, userId]);
 
   const dataReport = {
     comment: note,
     user: userId,
-    company: balanceByUser[0]?.company?.id,
     balance: balanceByUser[0]?.id,
-    left_balance: balanceByUser[0]?.left_balance,
+    left_balance_uz: balanceByUser[0]?.left_balance_uz,
+    left_balance_us: balanceByUser[0]?.left_balance_us,
   };
 
   const sendCost = async () => {
     if (xarajatNomi && soni && current) {
-      if (Number(balanceByUser[0]?.left_balance) - Number(narxi) >= 0) {
-        const sendedCostResult = await axios.post(
-          mainUrl + 'dashboard/balance/cost/create/',
-          dataCostsCreate,
-          {
-            headers: {
-              Authorization: `token ${token}`,
-            },
-          },
-        );
-
-        if (sendedCostResult.status === 201) {
-          clearAllHooks();
-          Alert.alert('Ishlatildi');
-          getBalanceById();
-        } else {
-          Alert.alert('Bazaga ulanishda xatolik!');
-        }
+      if (balanceByUser[0]?.company) {
+        dataCostsCreate.general = false;
       } else {
-        Alert.alert(
-          `Balansingizda yetmayotgan mablag! ${Math.abs(
-            Number(balanceByUser[0]?.left_balance) - Number(narxi),
-          )}`,
-        );
+        dataCostsCreate.general = true;
+      }
+      console.warn('dataCostsCreate => ', dataCostsCreate);
+      const sendedCostResult = await axios.post(
+        mainUrl + 'dashboard/balance/cost/create/',
+        dataCostsCreate,
+        {
+          headers: {
+            Authorization: `token ${token}`,
+          },
+        },
+      );
+
+      if (sendedCostResult.status === 201) {
+        clearAllHooks();
+        Alert.alert('Ishlatildi');
+        getBalanceById();
+      } else {
+        Alert.alert('Bazaga ulanishda xatolik!');
       }
     } else {
       Alert.alert('To`liq kiriting');
@@ -121,7 +143,13 @@ const CostsRegister = () => {
   };
 
   const sendReport = async () => {
-    if (balanceByUser[0]?.balance) {
+    if (balanceByUser[0]?.balance_uz || balanceByUser[0]?.balance_us) {
+      // company: balanceByUser[0]?.company?.id,
+      if (balanceByUser[0]?.company) {
+        dataReport.company = balanceByUser[0]?.company?.id;
+      } else {
+        console.warn('dataReport => ', dataReport);
+      }
       const sendedReportResult = await axios.post(
         mainUrl + 'dashboard/balance/reported/create/',
         dataReport,
@@ -145,39 +173,81 @@ const CostsRegister = () => {
     }
   };
 
+  const Item = ({img, id}) => (
+    <TouchableOpacity
+      onPress={() => {
+        setSelectedCompany(id);
+        dataCostsCreate.company = id;
+      }}
+      style={[
+        tw`w-30 h-30 m-auto mx-1 rounded-xl p-1`,
+        {
+          shadowColor: '#000',
+          shadowOpacity: 0.5,
+          shadowRadius: 3,
+          shadowOffset: {
+            width: 1,
+            height: 1,
+          },
+          elevation: 3,
+          backgroundColor: selectedCompany === id ? '#00E228' : 'white',
+        },
+      ]}>
+      <Image
+        source={{uri: baseUrl + img}}
+        resizeMode="contain"
+        style={tw`w-full h-full`}
+      />
+    </TouchableOpacity>
+  );
+
+  const renderItem = ({item}) => <Item img={item.img} id={item.id} />;
+
   return (
-    <SafeAreaView style={tw`flex-1`}>
+    <SafeAreaView style={tw`flex-1 bg-white`}>
       <ScrollView
         style={tw`flex-1 bg-white`}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={getBalanceById} />
         }>
-        <Header headerName={'Xarajatlar'} />
+        {/* <Header headerName={'Xarajatlar'} /> */}
         <DoubleBtn
           firstBtnName={'SERIO'}
           firstBtnFunction={() => setSerioProchi(1)}
           secondBtnName={'PROCHI'}
           secondBtnFunction={() => setSerioProchi(2)}
         />
-        <View
-          style={tw`w-9/12 h-10 flex-row justify-between items-center mx-auto`}>
-          <Text style={tw`text-xl font-bold`}>Balans</Text>
-          <View style={tw`flex-row w-6/12 justify-around items-center`}>
-            <Text style={tw`text-xl font-bold`}>
-              {balanceByUser[0]?.balance || '0'}
-            </Text>
-          </View>
+
+        <View style={tw`flex-row w-11/12 mx-auto mt-2 justify-around`}>
+          <Text style={tw`text-xl font-bold`}>Balans :</Text>
+          <Text style={tw`text-xl font-bold`}>
+            {balanceByUser[0]?.balance_uz || '0'} sum
+          </Text>
+          <Text style={tw`text-xl font-bold`}>
+            {balanceByUser[0]?.balance_us || '0'} 💵
+          </Text>
         </View>
 
-        <View
-          style={tw`w-9/12 h-10 flex-row justify-between items-center mx-auto`}>
-          <Text style={tw`text-xl font-bold`}>Qoldiq</Text>
-          <View style={tw`flex-row w-6/12 justify-around items-center`}>
-            <Text style={tw`text-xl font-bold`}>
-              {balanceByUser[0]?.left_balance || '0'}
-            </Text>
-          </View>
+        <View style={tw`flex-row w-11/12 mx-auto mt-2 justify-around`}>
+          <Text style={tw`text-xl font-bold`}>Qoldiq :</Text>
+          <Text style={tw`text-xl font-bold`}>
+            {balanceByUser[0]?.left_balance_uz || '0'} sum
+          </Text>
+          <Text style={tw`text-xl font-bold`}>
+            {balanceByUser[0]?.left_balance_us || '0'} 💵
+          </Text>
         </View>
+
+        {!balanceByUser[0]?.company && (
+          <View style={tw`h-35`}>
+            <FlatList
+              horizontal
+              data={companies}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+            />
+          </View>
+        )}
 
         <View style={tw`w-full justify-around`}>
           <TextInput
@@ -252,13 +322,31 @@ const CostsRegister = () => {
               </Text>
             </TouchableOpacity>
           </View>
+          <View style={tw`flex-row w-10/12 mx-auto`}>
+            <TextInput
+              placeholder="Xarajat narxi"
+              style={tw`border w-6.5/12 my-2 h-13 rounded-2xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
+              value={narxi}
+              onChangeText={setNarxi}
+            />
 
-          <TextInput
-            placeholder="Xarajat narxi"
-            style={tw`border w-10/12 my-2 h-13 mx-auto rounded-2xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
-            value={narxi}
-            onChangeText={setNarxi}
-          />
+            <TouchableOpacity
+              onPress={() => setType('sum')}
+              style={tw`w-2.5/12 h-13 border rounded-lg border-[rgba(0,0,0,0.5)] my-auto mx-auto`}>
+              <Text style={tw`m-auto`}>
+                Sum
+                {type === 'sum' && '✅'}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setType('dollar')}
+              style={tw`w-2.5/12 h-13 border rounded-lg border-[rgba(0,0,0,0.5)] my-auto mx-auto`}>
+              <Text style={tw`m-auto`}>
+                Dollar
+                {type === 'dollar' && '✅'}
+              </Text>
+            </TouchableOpacity>
+          </View>
           <TextInput
             placeholder="Qo'shimcha ma'lumot"
             multiline

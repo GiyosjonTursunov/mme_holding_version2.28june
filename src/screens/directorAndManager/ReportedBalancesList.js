@@ -75,14 +75,16 @@ const ReportedBalancesList = ({route}) => {
   const updateReport = async id => {
     const updateResult = await axios.put(
       mainUrl + `dashboard/balance/reported/is_checked/${id}/`,
-      {},
+      {
+        balance: balance_id,
+      },
       {
         headers: {
           Authorization: `token ${token}`,
         },
       },
     );
-
+    // balance/reported/<int:balance_id>/is_checked/
     if (updateResult.status === 200) {
       getReportList();
     } else {

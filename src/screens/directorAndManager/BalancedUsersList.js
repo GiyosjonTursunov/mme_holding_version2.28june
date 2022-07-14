@@ -33,13 +33,12 @@ const BalancedUsersList = ({navigation}) => {
   const [refreshing, setRefreshing] = useState(false);
 
   const [selectedComment, setSelectedComment] = useState('');
-  const [selectedCompany, setSelectedCompany] = useState('LaStoria');
+  const [selectedCompany, setSelectedCompany] = useState('');
 
   const getUsersList = async () => {
-    // console.log(token);
     setRefreshing(true);
     const resultUsers = await axios.get(
-      mainUrl + `dashboard/balance/list/${selectedCompany}/`,
+      mainUrl + `dashboard/balance/list/${selectedCompany}`,
       {
         headers: {
           Authorization: `token ${token}`,
@@ -48,7 +47,6 @@ const BalancedUsersList = ({navigation}) => {
     );
 
     if ((resultUsers.status = '200')) {
-      // console.warn('resultUsers.data => ', resultUsers.data);
       setUsers(resultUsers.data);
       setRefreshing(false);
     } else {
@@ -115,39 +113,52 @@ const BalancedUsersList = ({navigation}) => {
           style={tw`w-10/12 mt-2`}
           showsHorizontalScrollIndicator={false}>
           <TouchableOpacity
-            onPress={() => setSelectedCompany('LaStoria')}
+            onPress={() => setSelectedCompany('')}
             style={tw`border rounded-2xl ${
-              selectedCompany === 'LaStoria' ? 'bg-white' : 'bg-black'
+              selectedCompany === '' ? 'bg-white' : 'bg-black'
             } mx-1`}>
             <Text
               style={tw`text-md m-auto px-3 py-1.6 ${
-                selectedCompany === 'LaStoria' ? 'text-black' : 'text-white'
+                selectedCompany === '' ? 'text-black' : 'text-white'
+              }`}>
+              Hammasi
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => setSelectedCompany('LaStoria/')}
+            style={tw`border rounded-2xl ${
+              selectedCompany === 'LaStoria/' ? 'bg-white' : 'bg-black'
+            } mx-1`}>
+            <Text
+              style={tw`text-md m-auto px-3 py-1.6 ${
+                selectedCompany === 'LaStoria/' ? 'text-black' : 'text-white'
               }`}>
               LaStoria
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => setSelectedCompany('1SONiA')}
+            onPress={() => setSelectedCompany('1SONiA/')}
             style={tw`border rounded-2xl ${
-              selectedCompany === '1SONiA' ? 'bg-white' : 'bg-black'
+              selectedCompany === '1SONiA/' ? 'bg-white' : 'bg-black'
             } mx-1`}>
             <Text
               style={tw`text-md px-3 py-1.6 ${
-                selectedCompany === '1SONiA' ? 'text-black' : 'text-white'
+                selectedCompany === '1SONiA/' ? 'text-black' : 'text-white'
               }`}>
               1SONiA
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => setSelectedCompany('TexnoStyle')}
+            onPress={() => setSelectedCompany('TexnoStyle/')}
             style={tw`border rounded-2xl ${
-              selectedCompany === 'TexnoStyle' ? 'bg-white' : 'bg-black'
+              selectedCompany === 'TexnoStyle/' ? 'bg-white' : 'bg-black'
             } mx-1`}>
             <Text
               style={tw`text-md m-auto px-3 py-1.6 ${
-                selectedCompany === 'TexnoStyle' ? 'text-black' : 'text-white'
+                selectedCompany === 'TexnoStyle/' ? 'text-black' : 'text-white'
               }`}>
               TexnoStyle
             </Text>
@@ -155,7 +166,7 @@ const BalancedUsersList = ({navigation}) => {
         </ScrollView>
         <TouchableOpacity
           onPress={() => navigation.navigate('AddBalanceToUsers')}>
-          <Text style={tw`text-green-600 text-lg mx-3 mt-1`}>Qo'shish</Text>
+          <Text style={tw`text-green-600 text-lg mx-1 mt-1`}>Qo'shish</Text>
         </TouchableOpacity>
       </View>
       <FlatList
@@ -200,10 +211,19 @@ const BalancedUsersList = ({navigation}) => {
               <Text style={tw`mx-auto`}>{item?.date_updated}</Text>
               <View>
                 <Text style={tw`mr-1 text-red-600 text-base`}>
-                  {item?.balance}
+                  {item?.balance_uz || 0} sum
                 </Text>
                 <Text style={tw`mr-1 text-[#47B9EC] text-base`}>
-                  {item?.left_balance}
+                  {item?.left_balance_uz || 0} sum
+                </Text>
+              </View>
+
+              <View>
+                <Text style={tw`mr-1 text-red-600 text-base`}>
+                  {item?.balance_us || 0} 💵
+                </Text>
+                <Text style={tw`mr-1 text-[#47B9EC] text-base`}>
+                  {item?.left_balance_us || 0} 💵
                 </Text>
               </View>
 
