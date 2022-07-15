@@ -64,7 +64,7 @@ const CostsListsByBalanceId = ({route, navigation}) => {
       <SwipeButtonsContainer style={tw`mt-5`}>
         <TouchableOpacity
           onPress={() => {
-            alert('Удалить комментарий');
+            Alert.alert('Удалить комментарий');
           }}>
           <Image
             source={require('../../../assets/messages.png')}
@@ -92,7 +92,7 @@ const CostsListsByBalanceId = ({route, navigation}) => {
                 {
                   text: 'Удалить',
                   onPress: () => {
-                    alert('lohsan');
+                    Alert.alert('lohsan');
                   },
                 },
               ],
@@ -133,10 +133,9 @@ const CostsListsByBalanceId = ({route, navigation}) => {
         renderItem={({item, index}) => (
           <TouchableOpacity
             onPress={() => {
-              if (!item?.add_balance) {
+              if (!item?.add_balance_uz && !item?.add_balance_us) {
                 setLearnMoreModalVisible(true);
                 setSelectedItem(item);
-                // console.error('Selecteditem => ', item);
               }
             }}>
             <SwipeProvider>
@@ -151,7 +150,12 @@ const CostsListsByBalanceId = ({route, navigation}) => {
                     <Text style={tw`m-auto`}>{index + 1}</Text>
                   </View>
                   <Text style={tw`ml-3 font-500 text-[16px]`}>
-                    {item?.add_balance || item?.name}
+                    {item?.add_balance_uz || item?.name}{' '}
+                    {item?.add_balance_uz ? 'sum' : null}
+                  </Text>
+                  <Text style={tw`ml-3 font-500 text-[16px]`}>
+                    {item?.add_balance_us || null}{' '}
+                    {item?.add_balance_us ? '💵' : null}
                   </Text>
                 </View>
                 {item?.types === 'Add-balance' ? (
@@ -176,7 +180,14 @@ const CostsListsByBalanceId = ({route, navigation}) => {
                 <Text style={tw`mx-auto`}>{item?.date_updated}</Text>
 
                 {item?.types === 'Serio' || item?.types === 'Prochi' ? (
-                  <Text style={tw`mx-auto text-red-600`}>{item?.price}</Text>
+                  <>
+                    <Text style={tw`mx-auto text-red-600`}>
+                      {item?.price_uz} sum
+                    </Text>
+                    <Text style={tw`mx-auto text-red-600`}>
+                      {item?.price_us} 💵
+                    </Text>
+                  </>
                 ) : null}
 
                 {/* Modal for learnMore */}
@@ -218,7 +229,7 @@ const CostsListsByBalanceId = ({route, navigation}) => {
 
                       <SelectedItemView
                         name={'Narxi : '}
-                        value={selectedItem?.price}
+                        value={`${selectedItem?.price_uz} sum ${selectedItem?.price_us} 💵`}
                       />
 
                       <Text style={tw`text-lg mx-auto`}>

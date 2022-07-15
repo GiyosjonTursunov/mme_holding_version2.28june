@@ -49,6 +49,7 @@ const LoginScreen = ({route}) => {
       data: loginData,
     })
       .then(({data}) => {
+        console.warn(data);
         if (data.role === 'DIRECTOR') {
           storeData(data);
           dispatch(setIsLogIn(true));

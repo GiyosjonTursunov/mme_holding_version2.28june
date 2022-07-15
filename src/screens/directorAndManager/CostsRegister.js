@@ -13,6 +13,8 @@ import {
   RefreshControl,
   FlatList,
   Image,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import tw from 'twrnc';
 // import Header from '../../components/global/Header';
@@ -203,6 +205,8 @@ const CostsRegister = () => {
 
   const renderItem = ({item}) => <Item img={item.img} id={item.id} />;
 
+  // const keyboardVerticalOffset = Platform.OS === 'ios' ? 60 : 0;
+
   return (
     <SafeAreaView style={tw`flex-1 bg-white`}>
       <ScrollView
@@ -210,194 +214,196 @@ const CostsRegister = () => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={getBalanceById} />
         }>
-        {/* <Header headerName={'Xarajatlar'} /> */}
-        <DoubleBtn
-          firstBtnName={'SERIO'}
-          firstBtnFunction={() => setSerioProchi(1)}
-          secondBtnName={'PROCHI'}
-          secondBtnFunction={() => setSerioProchi(2)}
-        />
-
-        <View style={tw`flex-row w-11/12 mx-auto mt-2 justify-around`}>
-          <Text style={tw`text-xl font-bold`}>Balans :</Text>
-          <Text style={tw`text-xl font-bold`}>
-            {balanceByUser[0]?.balance_uz || '0'} sum
-          </Text>
-          <Text style={tw`text-xl font-bold`}>
-            {balanceByUser[0]?.balance_us || '0'} 💵
-          </Text>
-        </View>
-
-        <View style={tw`flex-row w-11/12 mx-auto mt-2 justify-around`}>
-          <Text style={tw`text-xl font-bold`}>Qoldiq :</Text>
-          <Text style={tw`text-xl font-bold`}>
-            {balanceByUser[0]?.left_balance_uz || '0'} sum
-          </Text>
-          <Text style={tw`text-xl font-bold`}>
-            {balanceByUser[0]?.left_balance_us || '0'} 💵
-          </Text>
-        </View>
-
-        {!balanceByUser[0]?.company && (
-          <View style={tw`h-35`}>
-            <FlatList
-              horizontal
-              data={companies}
-              renderItem={renderItem}
-              keyExtractor={item => item.id}
-            />
-          </View>
-        )}
-
-        <View style={tw`w-full justify-around`}>
-          <TextInput
-            placeholder="Xarajat nomi"
-            style={tw`border w-10/12 my-2 mx-auto h-13 rounded-xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
-            onChangeText={setXarajatNomi}
-            value={xarajatNomi}
+        <KeyboardAvoidingView behavior="position">
+          {/* <Header headerName={'Xarajatlar'} /> */}
+          <DoubleBtn
+            firstBtnName={'SERIO'}
+            firstBtnFunction={() => setSerioProchi(1)}
+            secondBtnName={'PROCHI'}
+            secondBtnFunction={() => setSerioProchi(2)}
           />
-          <TextInput
-            placeholder="Soni"
-            style={tw`border w-10/12 my-2 mx-auto h-13 rounded-xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
-            onChangeText={setSoni}
-            value={soni}
-          />
-          <View
-            style={tw`flex-row my-2 justify-around items-center mx-auto h-13`}>
-            <TouchableOpacity
-              onPress={() => setCurrent(3)}
-              // 1 bolsa dona 2 bolsa kg 3 bolsa metr
-              style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
-              <Text style={tw`m-auto`}>
-                Metr
-                {current === 3 && '✅'}
-              </Text>
-            </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => setCurrent(1)}
-              style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
-              <Text style={tw`m-auto`}>
-                Dona
-                {current === 1 && '✅'}
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => setCurrent(2)}
-              style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
-              <Text style={tw`m-auto`}>
-                Kg
-                {current === 2 && '✅'}
-              </Text>
-            </TouchableOpacity>
+          <View style={tw`flex-row w-11/12 mx-auto mt-2 justify-around`}>
+            <Text style={tw`text-xl font-bold`}>Balans :</Text>
+            <Text style={tw`text-xl font-bold`}>
+              {balanceByUser[0]?.balance_uz || '0'} sum
+            </Text>
+            <Text style={tw`text-xl font-bold`}>
+              {balanceByUser[0]?.balance_us || '0'} 💵
+            </Text>
           </View>
 
-          <View
-            style={tw`flex-row my-2 justify-around items-center mx-auto h-13`}>
-            <TouchableOpacity
-              onPress={() => setCurrent(4)}
-              style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
-              <Text style={tw`m-auto`}>
-                Litr
-                {current === 4 && '✅'}
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => setCurrent(5)}
-              style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
-              <Text style={tw`m-auto`}>
-                Kub
-                {current === 5 && '✅'}
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => setCurrent(6)}
-              style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
-              <Text style={tw`m-auto`}>
-                Kbayt/soat
-                {current === 6 && '✅'}
-              </Text>
-            </TouchableOpacity>
+          <View style={tw`flex-row w-11/12 mx-auto mt-2 justify-around`}>
+            <Text style={tw`text-xl font-bold`}>Qoldiq :</Text>
+            <Text style={tw`text-xl font-bold`}>
+              {balanceByUser[0]?.left_balance_uz || '0'} sum
+            </Text>
+            <Text style={tw`text-xl font-bold`}>
+              {balanceByUser[0]?.left_balance_us || '0'} 💵
+            </Text>
           </View>
-          <View style={tw`flex-row w-10/12 mx-auto`}>
+
+          {!balanceByUser[0]?.company && (
+            <View style={tw`h-35`}>
+              <FlatList
+                horizontal
+                data={companies}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+              />
+            </View>
+          )}
+
+          <View style={tw`w-full justify-around`}>
             <TextInput
-              placeholder="Xarajat narxi"
-              style={tw`border w-6.5/12 my-2 h-13 rounded-2xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
-              value={narxi}
-              onChangeText={setNarxi}
+              placeholder="Xarajat nomi"
+              style={tw`border w-10/12 my-2 mx-auto h-13 rounded-xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
+              onChangeText={setXarajatNomi}
+              value={xarajatNomi}
             />
+            <TextInput
+              placeholder="Soni"
+              style={tw`border w-10/12 my-2 mx-auto h-13 rounded-xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
+              onChangeText={setSoni}
+              value={soni}
+            />
+            <View
+              style={tw`flex-row my-2 justify-around items-center mx-auto h-13`}>
+              <TouchableOpacity
+                onPress={() => setCurrent(3)}
+                // 1 bolsa dona 2 bolsa kg 3 bolsa metr
+                style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
+                <Text style={tw`m-auto`}>
+                  Metr
+                  {current === 3 && '✅'}
+                </Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => setType('sum')}
-              style={tw`w-2.5/12 h-13 border rounded-lg border-[rgba(0,0,0,0.5)] my-auto mx-auto`}>
-              <Text style={tw`m-auto`}>
-                Sum
-                {type === 'sum' && '✅'}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => setType('dollar')}
-              style={tw`w-2.5/12 h-13 border rounded-lg border-[rgba(0,0,0,0.5)] my-auto mx-auto`}>
-              <Text style={tw`m-auto`}>
-                Dollar
-                {type === 'dollar' && '✅'}
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <TextInput
-            placeholder="Qo'shimcha ma'lumot"
-            multiline
-            style={tw`border w-10/12 mx-auto h-30 rounded-xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
-            value={note}
-            onChangeText={setNote}
-          />
-          <View style={tw`flex-row w-60 mx-auto my-2 mb-10`}>
-            <TouchableOpacity
-              style={tw`w-5.5/12 h-11 bg-black mx-auto rounded-2xl`}
-              onPress={sendCost}>
-              <Text style={tw`m-auto text-white text-base`}>Ishlatish</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={tw`w-5.5/12 h-11 bg-black mx-auto rounded-2xl`}
-              onPress={() => setModalReportVisible(true)}>
-              <Text style={tw`m-auto text-white text-base`}>Tozalash</Text>
-              <Modal
-                animationType="fade"
-                transparent={true}
-                visible={modalReportVisible}
-                onRequestClose={() => {
-                  setModalReportVisible(!modalReportVisible);
-                }}>
-                <TouchableOpacity
-                  onPress={() => setModalReportVisible(false)}
-                  style={tw`flex-1 justify-center items-center bg-[rgba(0,0,0,0.5)]`}>
+              <TouchableOpacity
+                onPress={() => setCurrent(1)}
+                style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
+                <Text style={tw`m-auto`}>
+                  Dona
+                  {current === 1 && '✅'}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => setCurrent(2)}
+                style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
+                <Text style={tw`m-auto`}>
+                  Kg
+                  {current === 2 && '✅'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+            <View
+              style={tw`flex-row my-2 justify-around items-center mx-auto h-13`}>
+              <TouchableOpacity
+                onPress={() => setCurrent(4)}
+                style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
+                <Text style={tw`m-auto`}>
+                  Litr
+                  {current === 4 && '✅'}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => setCurrent(5)}
+                style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
+                <Text style={tw`m-auto`}>
+                  Kub
+                  {current === 5 && '✅'}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => setCurrent(6)}
+                style={tw`w-3/12 h-full border rounded-lg mx-2 border-[rgba(0,0,0,0.5)]`}>
+                <Text style={tw`m-auto`}>
+                  Kbayt/soat
+                  {current === 6 && '✅'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={tw`flex-row w-10/12 mx-auto`}>
+              <TextInput
+                placeholder="Xarajat narxi"
+                style={tw`border w-6.5/12 my-2 h-13 rounded-2xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
+                value={narxi}
+                onChangeText={setNarxi}
+              />
+
+              <TouchableOpacity
+                onPress={() => setType('sum')}
+                style={tw`w-2.5/12 h-13 border rounded-lg border-[rgba(0,0,0,0.5)] my-auto mx-auto`}>
+                <Text style={tw`m-auto`}>
+                  Sum
+                  {type === 'sum' && '✅'}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => setType('dollar')}
+                style={tw`w-2.5/12 h-13 border rounded-lg border-[rgba(0,0,0,0.5)] my-auto mx-auto`}>
+                <Text style={tw`m-auto`}>
+                  Dollar
+                  {type === 'dollar' && '✅'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <TextInput
+              placeholder="Qo'shimcha ma'lumot"
+              multiline
+              style={tw`border w-10/12 mx-auto h-30 rounded-xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
+              value={note}
+              onChangeText={setNote}
+            />
+            <View style={tw`flex-row w-60 mx-auto my-2 mb-10`}>
+              <TouchableOpacity
+                style={tw`w-5.5/12 h-11 bg-black mx-auto rounded-2xl`}
+                onPress={sendCost}>
+                <Text style={tw`m-auto text-white text-base`}>Ishlatish</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={tw`w-5.5/12 h-11 bg-black mx-auto rounded-2xl`}
+                onPress={() => setModalReportVisible(true)}>
+                <Text style={tw`m-auto text-white text-base`}>Tozalash</Text>
+                <Modal
+                  animationType="fade"
+                  transparent={true}
+                  visible={modalReportVisible}
+                  onRequestClose={() => {
+                    setModalReportVisible(!modalReportVisible);
+                  }}>
                   <TouchableOpacity
-                    onPress={() => setModalReportVisible(true)}
-                    style={tw`w-11/12 h-40 bg-white rounded-3xl justify-around items-center`}>
-                    <TextInput
-                      multiline
-                      style={tw`w-11/12 h-20 border border-[rgba(0,0,0,0.5)] rounded-2xl p-2`}
-                      placeholder="Balans tozalsh"
-                      value={note}
-                      onChangeText={setNote}
-                    />
+                    onPress={() => setModalReportVisible(false)}
+                    style={tw`flex-1 justify-center items-center bg-[rgba(0,0,0,0.5)]`}>
                     <TouchableOpacity
-                      style={tw`w-6/12 h-13 rounded-full bg-[#242424]`}
-                      onPress={sendReport}>
-                      <Text
-                        style={tw`m-auto text-base font-semibold text-white`}>
-                        Jo'natish
-                      </Text>
+                      onPress={() => setModalReportVisible(true)}
+                      style={tw`w-11/12 h-40 bg-white rounded-3xl justify-around items-center`}>
+                      <TextInput
+                        multiline
+                        style={tw`w-11/12 h-20 border border-[rgba(0,0,0,0.5)] rounded-2xl p-2`}
+                        placeholder="Balans tozalsh"
+                        value={note}
+                        onChangeText={setNote}
+                      />
+                      <TouchableOpacity
+                        style={tw`w-6/12 h-13 rounded-full bg-[#242424]`}
+                        onPress={sendReport}>
+                        <Text
+                          style={tw`m-auto text-base font-semibold text-white`}>
+                          Jo'natish
+                        </Text>
+                      </TouchableOpacity>
                     </TouchableOpacity>
                   </TouchableOpacity>
-                </TouchableOpacity>
-              </Modal>
-            </TouchableOpacity>
+                </Modal>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>
   );
