@@ -48,9 +48,7 @@ const ReportScreen = () => {
   useEffect(() => {
     getDailyReports();
   }, [token]);
-  // refreshControl={
-  //   <RefreshControl refreshing={refreshing} onRefresh={getDailyReports} />
-  // }
+
   return (
     <View style={tw`flex-1 bg-white`}>
       <Header headerName={'Otchet'} />

@@ -14,7 +14,6 @@ import {
   FlatList,
   Image,
   KeyboardAvoidingView,
-  Platform,
 } from 'react-native';
 import tw from 'twrnc';
 // import Header from '../../components/global/Header';

@@ -1365,11 +1365,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
-"@pnap/react-native-search-bar@^1.0.5":
-  "integrity" "sha512-cyLr9jmyHVAhRy7RmyVuRuwJwDloVxtssWzOW8hjF91aRIh00eCPdwWgv+WBYZ/cLYpuWHUIUmfjvc/HwCuQJA=="
-  "resolved" "https://registry.npmjs.org/@pnap/react-native-search-bar/-/react-native-search-bar-1.0.5.tgz"
-  "version" "1.0.5"
-
 "@react-native-community/cli-clean@^8.0.0":
   "integrity" "sha512-VY/kwyH5xp6oXiB9bcwa+I9W5k6WR/nX3s85FuMW76hSlgG1UVAGL04uZPwYlSmMZuSOSuoXOaIjJ7wAvQMBpg=="
   "resolved" "https://registry.npmjs.org/@react-native-community/cli-clean/-/cli-clean-8.0.0.tgz"

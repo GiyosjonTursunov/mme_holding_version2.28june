@@ -23,8 +23,6 @@ const ReportedBalancesList = ({route}) => {
   const {token} = useSelector(state => state.userReducer);
 
   const getReportList = async () => {
-    // url /dashboard/balance/reported/filter/is_checked/
-    // /dashboard/balance/reported/list/{balance_id}/
     const reportResult = await axios.get(
       mainUrl + `dashboard/balance/reported/list/${balance_id}/`,
       {
@@ -35,7 +33,6 @@ const ReportedBalancesList = ({route}) => {
     );
 
     if (reportResult.status === 200) {
-      //   console.warn('reportResult.data => ', reportResult.data);
       setReportList(reportResult.data);
     } else {
       Alert.alert('Error', 'Bazaga ulanishda xatolik yuz berdi');
@@ -84,7 +81,7 @@ const ReportedBalancesList = ({route}) => {
         },
       },
     );
-    // balance/reported/<int:balance_id>/is_checked/
+
     if (updateResult.status === 200) {
       getReportList();
     } else {

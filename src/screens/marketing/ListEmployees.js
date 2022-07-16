@@ -17,8 +17,6 @@ import {useSelector} from 'react-redux';
 import Header from '../../components/global/Header';
 import ThreeBtn from '../../components/global/ThreeBtn';
 
-import SearchBar from '@pnap/react-native-search-bar';
-
 import tw from 'twrnc';
 import DatePickerCustom from '../../components/global/DatePickerCustom';
 import Employees from '../../components/renders/Employees';
@@ -38,7 +36,7 @@ const ListEmployees = ({navigation}) => {
 
   const [isNorm, setIsNorm] = useState(2);
 
-  const [isSearchPressed, setIsSearchPressed] = useState(false);
+  // const [isSearchPressed, setIsSearchPressed] = useState(false);
 
   const [typesForUrl, setTypesForUrl] = useState('all/');
 
@@ -55,7 +53,6 @@ const ListEmployees = ({navigation}) => {
         })
         .then(res => {
           setEmployees(res.data);
-          // console.warn('getEmployees =>', res.data);
           setRefreshing(false);
         })
         .catch(err => {
@@ -79,7 +76,6 @@ const ListEmployees = ({navigation}) => {
           setRefreshing(false);
         })
         .catch(_err => {
-          // console.error('error', err);
           setRefreshing(false);
         });
     }
@@ -131,8 +127,6 @@ const ListEmployees = ({navigation}) => {
       return {id: item.id};
     });
 
-    // console.warn('dataSortedId =>', dataSortedId);
-
     const resultUpdate = axios.put(
       mainUrl + 'dashboard/workers/update/work/',
       dataSortedId,
@@ -153,6 +147,11 @@ const ListEmployees = ({navigation}) => {
 
   return (
     <SafeAreaView style={tw`bg-white flex-1`}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('CostsRegister')}
+        style={tw`absolute right-0 bottom-[8%] z-1 bg-white rounded-full p-1`}>
+        <Text style={tw`text-6xl m-auto`}>💸</Text>
+      </TouchableOpacity>
       {role === 'MARKETOLOG' && <Header headerName={'Marketing'} />}
       <ThreeBtn
         firstBtnName={'LaStoria'}
@@ -162,16 +161,16 @@ const ListEmployees = ({navigation}) => {
         thirdBtnName={'TexnoStyle'}
         thirdBtnNavigation={() => setSearchName('TexnoStyle')}
       />
-      {/* <View style={tw`flex-row px-4`}>
+      <View style={tw`flex-row w-11/12 mx-auto justify-around items-center`}>
         <View
-          style={tw`w-10/12 h-12 border border-[rgba(0,0,0,0.3)] mx-auto my-2 rounded-xl flex-row`}>
+          style={tw`w-8/12 h-12 border-b border-[rgba(0,0,0,0.3)] my-2 rounded-xl flex-row`}>
           <Image
             source={require('../../../assets/search.png')}
-            style={tw`w-2/12 h-8 m-auto`}
+            style={tw`w-2/12 h-6.5 m-auto`}
             resizeMode="contain"
           />
           <TextInput
-            style={tw`w-10/12 font-600 text-lg text-left pl-2`}
+            style={tw`w-10.5/12 font-600 text-lg text-left pl-1`}
             placeholder={'Qidiruv'}
             placeholderTextColor={'#999'}
             onChangeText={text => {
@@ -181,25 +180,20 @@ const ListEmployees = ({navigation}) => {
             }}
           />
         </View>
-      </View> */}
-
-      <View
-        style={tw`w-11.5/12 flex-row h-15 justify-around items-center mx-auto mt-3`}>
         <TouchableOpacity
           onPress={() => setTypesForUrl('all/')}
-          style={tw`border rounded-3xl my-auto ${
-            isSearchPressed ? 'hidden' : null
-          } ${typesForUrl === 'all/' ? 'bg-black' : null}`}>
+          style={tw`border rounded-xl my-auto  ${
+            typesForUrl === 'all/' ? 'bg-black' : null
+          }`}>
           <Text
-            style={tw`text-xl m-auto text-black px-5 py-2 ${
+            style={tw`text-xl m-auto text-black px-3 py-2 ${
               typesForUrl === 'all/' ? 'text-white' : null
             }`}>
-            Barchasi
+            Все
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={tw`${isSearchPressed ? 'hidden' : null}`}
           onPress={() => {
             setTypesForUrl('vacha/');
           }}>
@@ -207,36 +201,6 @@ const ListEmployees = ({navigation}) => {
             source={require('../../../assets/invoice.png')}
             resizeMode="contain"
             style={tw`w-10 h-10`}
-          />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate('CostsRegister')}
-          style={tw`${isSearchPressed ? 'hidden' : null}`}>
-          <Text style={tw`text-6xl`}>💸</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={tw`${
-            isSearchPressed ? 'absolute right-0 top-3 w-full' : null
-          }`}>
-          <SearchBar
-            onSubmitSearch={text => {
-              if (text.length) {
-                setSearchName(text);
-              }
-            }}
-            onActiveSearch={() => setSearchName('')}
-            onToggleSearchBar={() => setIsSearchPressed(!isSearchPressed)}
-            customIcon={
-              <Image
-                source={require('../../../assets/search.png')}
-                resizeMode="contain"
-                style={tw`w-8 h-8`}
-              />
-            }
-            underlineActiveColor={'#9f9ea4'}
-            underlineInactiveColor={'#6d28d9'}
           />
         </TouchableOpacity>
       </View>

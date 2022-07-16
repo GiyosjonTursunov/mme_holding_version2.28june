@@ -75,43 +75,43 @@ const CostsListsByBalanceId = ({route, navigation}) => {
     );
   };
 
-  const rightButton = id => {
-    return (
-      <SwipeButtonsContainer style={tw`mt-5`}>
-        <TouchableOpacity
-          onPress={() =>
-            Alert.alert(
-              'Удалить запись',
-              'Вы уверены, что хотите удалить запись?',
-              [
-                {
-                  text: 'Отмена',
-                  style: 'cancel',
-                },
-                {
-                  text: 'Удалить',
-                  onPress: () => {
-                    Alert.alert('lohsan');
-                  },
-                },
-              ],
-              {cancelable: false},
-            )
-          }>
-          <Image
-            source={require('../../../assets/transfer.png')}
-            resizeMode="contain"
-            style={[
-              tw`w-10 h-10 m-auto`,
-              {
-                transform: [{rotate: '90'}],
-              },
-            ]}
-          />
-        </TouchableOpacity>
-      </SwipeButtonsContainer>
-    );
-  };
+  // const rightButton = id => {
+  //   return (
+  //     <SwipeButtonsContainer style={tw`mt-5`}>
+  //       <TouchableOpacity
+  //         onPress={() =>
+  //           Alert.alert(
+  //             'Удалить запись',
+  //             'Вы уверены, что хотите удалить запись?',
+  //             [
+  //               {
+  //                 text: 'Отмена',
+  //                 style: 'cancel',
+  //               },
+  //               {
+  //                 text: 'Удалить',
+  //                 onPress: () => {
+  //                   Alert.alert('lohsan');
+  //                 },
+  //               },
+  //             ],
+  //             {cancelable: false},
+  //           )
+  //         }>
+  //         <Image
+  //           source={require('../../../assets/transfer.png')}
+  //           resizeMode="contain"
+  //           style={[
+  //             tw`w-10 h-10 m-auto`,
+  //             {
+  //               transform: [{rotate: '90'}],
+  //             },
+  //           ]}
+  //         />
+  //       </TouchableOpacity>
+  //     </SwipeButtonsContainer>
+  //   );
+  // };
 
   const SelectedItemView = ({name, value}) => {
     return (
