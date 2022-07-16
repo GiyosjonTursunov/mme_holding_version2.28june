@@ -243,16 +243,16 @@ const CostsRegister = () => {
             </Text>
           </View>
 
-          {!balanceByUser[0]?.company && (
-            <View style={tw`h-35`}>
-              <FlatList
-                horizontal
-                data={companies}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-              />
-            </View>
-          )}
+          {/* {!balanceByUser[0]?.company && ( */}
+          <View style={tw`h-35`}>
+            <FlatList
+              horizontal
+              data={companies}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+            />
+          </View>
+          {/* )} */}
 
           <View style={tw`w-full justify-around`}>
             <TextInput

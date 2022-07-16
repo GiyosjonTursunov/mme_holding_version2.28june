@@ -44,7 +44,6 @@ const CostsListsByBalanceId = ({route, navigation}) => {
     );
 
     if (resultCostsList.status === 200) {
-      //   console.warn('resultCostsList.data => ', resultCostsList.data);
       setRefreshing(false);
       setCostsList(resultCostsList.data);
     } else {

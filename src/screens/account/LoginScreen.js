@@ -24,8 +24,6 @@ const storeData = async value => {
     await AsyncStorage.setItem('@user', jsonValue);
   } catch (e) {
     Alert.alert('Error', 'Error');
-
-    // console.warn(e);
   }
 };
 
@@ -37,7 +35,6 @@ const LoginScreen = ({route}) => {
   const [password, setPassword] = useState('');
 
   const sendLogin = () => {
-    // if (route.params?.key === 'LaStoria') {
     const loginData = {
       username: phone,
       password: password,
@@ -49,7 +46,6 @@ const LoginScreen = ({route}) => {
       data: loginData,
     })
       .then(({data}) => {
-        console.warn(data);
         if (data.role === 'DIRECTOR') {
           storeData(data);
           dispatch(setIsLogIn(true));
