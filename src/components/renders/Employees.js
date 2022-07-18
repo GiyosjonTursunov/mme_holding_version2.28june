@@ -15,7 +15,6 @@ const getTodayDate = () => {
 const Employees = ({item, setIsNorm, setDateModalVisible, setEmployeeId}) => (
   <View
     style={tw`w-11/12 h-18 mx-auto my-2 rounded-lg ${
-      item &&
       item?.worker_date_work[0] &&
       item?.worker_date_work[0]?.work_date === getTodayDate()
         ? 'border-red-700'

@@ -14,19 +14,21 @@ const AboutSalonScreen = ({route}) => {
   const {token} = useSelector(state => state.userReducer);
 
   useEffect(() => {
-    axios({
-      url: `${mainUrl}lastoria/salon/${route.params?.id}/`,
-      method: 'GET',
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    })
-      .then(res => {
-        setSalon(res.data);
+    if (token && route?.params?.id) {
+      axios({
+        url: `${mainUrl}lastoria/salon/${route.params?.id}/`,
+        method: 'GET',
+        headers: {
+          Authorization: `token ${token}`,
+        },
       })
-      .catch(_err => {
-        return;
-      });
+        .then(res => {
+          setSalon(res.data);
+        })
+        .catch(_err => {
+          return;
+        });
+    }
   }, [route.params?.id, token]);
 
   const data = [salon?.dress_count, salon?.given_price, salon?.left_price];
