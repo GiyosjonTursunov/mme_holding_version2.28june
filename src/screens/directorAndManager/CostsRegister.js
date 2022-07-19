@@ -14,6 +14,7 @@ import {
   FlatList,
   Image,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import tw from 'twrnc';
 // import Header from '../../components/global/Header';
@@ -21,6 +22,7 @@ import DoubleBtn from '../../components/global/DoubleBtn';
 import {baseUrl, mainUrl} from '../../config/apiUrl';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
+import {spacify} from '../../helpers/spacify';
 
 const CostsRegister = () => {
   const {token, userId} = useSelector(state => state.userReducer);
@@ -42,6 +44,8 @@ const CostsRegister = () => {
 
   const [type, setType] = useState('sum');
   const [selectedCompany, setSelectedCompany] = useState(null);
+
+  const [maskedPrice, setMaskedPrice] = useState('');
 
   const dataCostsCreate = {
     balance: balanceByUser[0]?.id,
@@ -204,7 +208,8 @@ const CostsRegister = () => {
 
   const renderItem = ({item}) => <Item img={item.img} id={item.id} />;
 
-  // const keyboardVerticalOffset = Platform.OS === 'ios' ? 60 : 0;
+  const keyboardVerticalOffset = 5;
+  // const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0;
 
   return (
     <SafeAreaView style={tw`flex-1 bg-white`}>
@@ -213,8 +218,9 @@ const CostsRegister = () => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={getBalanceById} />
         }>
-        <KeyboardAvoidingView behavior="position">
-          {/* <Header headerName={'Xarajatlar'} /> */}
+        <KeyboardAvoidingView
+          behavior="padding"
+          keyboardVerticalOffset={keyboardVerticalOffset}>
           <DoubleBtn
             firstBtnName={'SERIO'}
             firstBtnFunction={() => setSerioProchi(1)}
@@ -225,20 +231,20 @@ const CostsRegister = () => {
           <View style={tw`flex-row w-11/12 mx-auto mt-2 justify-around`}>
             <Text style={tw`text-xl font-bold`}>Balans :</Text>
             <Text style={tw`text-xl font-bold`}>
-              {balanceByUser[0]?.balance_uz || '0'} sum
+              {spacify(Number(balanceByUser[0]?.balance_uz)) || '0'} sum
             </Text>
             <Text style={tw`text-xl font-bold`}>
-              {balanceByUser[0]?.balance_us || '0'} 💵
+              {spacify(Number(balanceByUser[0]?.balance_us)) || '0'} 💵
             </Text>
           </View>
 
           <View style={tw`flex-row w-11/12 mx-auto mt-2 justify-around`}>
             <Text style={tw`text-xl font-bold`}>Qoldiq :</Text>
             <Text style={tw`text-xl font-bold`}>
-              {balanceByUser[0]?.left_balance_uz || '0'} sum
+              {spacify(Number(balanceByUser[0]?.left_balance_uz)) || '0'} sum
             </Text>
             <Text style={tw`text-xl font-bold`}>
-              {balanceByUser[0]?.left_balance_us || '0'} 💵
+              {spacify(Number(balanceByUser[0]?.left_balance_us)) || '0'} 💵
             </Text>
           </View>
 
@@ -330,8 +336,13 @@ const CostsRegister = () => {
               <TextInput
                 placeholder="Xarajat narxi"
                 style={tw`border w-6.5/12 my-2 h-13 rounded-2xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
-                value={narxi}
-                onChangeText={setNarxi}
+                value={maskedPrice}
+                onChangeText={text => {
+                  setNarxi(text);
+                  text
+                    ? setMaskedPrice(spacify(Number(text.replace(/ /g, ''))))
+                    : setMaskedPrice(0);
+                }}
               />
 
               <TouchableOpacity

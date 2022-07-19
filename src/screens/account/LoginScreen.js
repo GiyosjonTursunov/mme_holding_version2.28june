@@ -126,6 +126,7 @@ const LoginScreen = ({route}) => {
           placeH={'password'}
           value={password}
           onChangeText={setPassword}
+          secure
         />
         <TouchableOpacity
           style={tw`w-5/12 h-12 bg-black mx-auto my-4 rounded-2xl`}

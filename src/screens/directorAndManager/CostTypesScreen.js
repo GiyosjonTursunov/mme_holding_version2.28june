@@ -20,6 +20,7 @@ import DoubleBtn from '../../components/global/DoubleBtn';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import {mainUrl} from '../../config/apiUrl';
+import {spacify} from '../../helpers/spacify';
 
 const CostTypesScreen = ({route}) => {
   const {token, userId} = useSelector(state => state.userReducer);
@@ -99,8 +100,8 @@ const CostTypesScreen = ({route}) => {
         <Text style={tw`text-blue-600 text-base font-bold`}>
           Balans qoshildi
         </Text>
-        <Text>{item.add_balance_uz} sum</Text>
-        <Text>{item.add_balance_us} 💵</Text>
+        <Text>{spacify(item?.add_balance_uz)} sum</Text>
+        <Text>{spacify(item?.add_balance_us)} 💵</Text>
       </View>
     ) : (
       <View
@@ -117,10 +118,12 @@ const CostTypesScreen = ({route}) => {
             elevation: 2,
           },
         ]}>
-        <Text style={tw`text-base`}>{item.name}</Text>
-        <Text style={tw`text-base`}>{item.count} ta</Text>
-        <Text style={tw`text-base`}>{item.price_uz} sum</Text>
-        <Text style={tw`text-base`}>{item.price_us} 💵</Text>
+        <Text style={tw`text-base`}>{item?.name}</Text>
+        <Text style={tw`text-base`}>
+          {item?.count} {item?.amount}
+        </Text>
+        <Text style={tw`text-base`}>{spacify(item?.price_uz)} sum</Text>
+        <Text style={tw`text-base`}>{spacify(item?.price_us)} 💵</Text>
       </View>
     );
 
@@ -149,10 +152,11 @@ const CostTypesScreen = ({route}) => {
           <Image
             source={require('../../../assets/plus.png')}
             resizeMode="contain"
-            style={tw`w-11 h-11 m-auto`}
+            style={tw`w-10.5 h-10.5 m-auto`}
           />
         }
         secondBtnFunction={() => navigation.navigate('CostsRegister')}
+        isImageSecond
       />
 
       <View style={tw`mb-2`} />

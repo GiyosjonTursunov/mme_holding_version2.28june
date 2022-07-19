@@ -2,9 +2,10 @@ import React from 'react';
 import {TextInput} from 'react-native';
 import tw from 'twrnc';
 
-const Input = ({placeH, onChangeText, value, kboard}) => {
+const Input = ({placeH, onChangeText, value, kboard, secure}) => {
   return (
     <TextInput
+      secureTextEntry={secure}
       value={value}
       placeholder={placeH}
       onChangeText={onChangeText}

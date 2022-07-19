@@ -11,7 +11,7 @@ import {
   FlatList,
   KeyboardAvoidingView,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import tw from 'twrnc';
 import RegisterDress from '../modals/RegisterDress';
 import RegisterSalon from '../modals/RegisterSalon';
@@ -20,8 +20,8 @@ import {useSelector} from 'react-redux';
 import axios from 'axios';
 import {mainUrl} from '../../../config/apiUrl';
 
-// import {w3cwebsocket as W3CWebSocket} from 'websocket';
-// import {setWsVendorManagerSale} from '../../../redux/actions';
+import * as ImagePicker from 'react-native-image-picker';
+import {ImagePickerModal} from '../../../modals/image-picker-modal';
 
 const OrderDress = () => {
   const {token, userId, magazineId, wsVendorManagerSale, role} = useSelector(
@@ -47,7 +47,14 @@ const OrderDress = () => {
   const [shleftList, setShleftList] = useState([]);
   const [shleftListModalVisible, setShleftListModalVisible] = useState(false);
 
-  // const saleSocket = React.useRef(new W3CWebSocket(wsSaleUrl)).current;
+  const [dressImg1ChooseModalVisible, setDressImg1ChooseModalVisible] =
+    useState(false);
+
+  const [dressImgPickerResponse, setDressImgPickerResponse] = useState(null);
+
+  const [nameImage1, setNameImage1] = useState('');
+  const [uriImage1, setUriImage1] = useState('');
+  const [typeImage1, setTypeImage1] = useState('');
 
   const dataForOrder = {
     dress: dressId,
@@ -66,11 +73,6 @@ const OrderDress = () => {
 
   useEffect(() => {
     if (wsVendorManagerSale) {
-      // wsVendorManagerSale.onopen = () => {
-      //   console.log('Connected to news wsVendorManagerSale');
-      //   // saleSocket.close();
-      // };
-
       const successSale = () => {
         Alert.alert('Данные успешно добавлены');
         setDressId('');
@@ -89,7 +91,6 @@ const OrderDress = () => {
         const data = JSON.parse(e.data);
 
         if (data.type === 'saved_sale') {
-          // console.warn('saved_sale =>', data);
           if (data.sale === 'order') {
             if (
               data.data.dress.id === dressId &&
@@ -114,6 +115,22 @@ const OrderDress = () => {
       };
     }
   }, [wsVendorManagerSale, dressId, salonId, role]);
+
+  const onImage1LibraryPress = useCallback(() => {
+    const options = {
+      selectionLimit: 1,
+      mediaType: 'photo',
+      includeBase64: false,
+    };
+    ImagePicker.launchImageLibrary(options, setDressImgPickerResponse).then(
+      async image => {
+        setNameImage1(image.assets[0].fileName);
+        setUriImage1(image.assets[0].uri);
+        setTypeImage1(image.assets[0].type);
+        setDressImg1ChooseModalVisible(false);
+      },
+    );
+  }, []);
 
   const sendOrder = () => {
     if (dressId && moneyGiveDate && givenPrice && deliveryDate) {
@@ -332,6 +349,28 @@ const OrderDress = () => {
                 </TouchableOpacity>
               </View>
             </Modal>
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={tw`w-11/12 h-20 flex-row mx-auto my-[2%] justify-between items-center`}>
+          <TextInput
+            multiline
+            placeholder="Izoh"
+            value={note}
+            onChangeText={setNote}
+            style={tw`w-9/12 h-20 border text-base font-semibold rounded-xl border-[rgba(0,0,0,0.5)] mx-auto px-2`}
+          />
+
+          <TouchableOpacity style={tw`w-2.5/12 h-20 border rounded-2xl p-1`}>
+            <ImagePickerModal
+              isVisible={dressImg1ChooseModalVisible}
+              onClose={() => setDressImg1ChooseModalVisible(false)}
+              onImageLibraryPress={onImage1LibraryPress}
+              onCameraPress={() => {
+                return;
+              }}
+            />
           </TouchableOpacity>
         </View>
 

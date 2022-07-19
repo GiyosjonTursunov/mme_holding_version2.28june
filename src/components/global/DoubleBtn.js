@@ -8,6 +8,7 @@ const DoubleBtn = ({
   firstBtnFunction,
   secondBtnName,
   secondBtnFunction,
+  isImageSecond,
 }) => {
   const [isAll, setIsAll] = useState(true);
   const [isSale, setIsSale] = useState(false);
@@ -35,10 +36,16 @@ const DoubleBtn = ({
             secondBtnFunction ? secondBtnFunction() : null;
           }}
           style={tw`flex-1 rounded-xl ${isSale ? 'bg-white' : null}`}>
-          <Text
-            style={tw`m-auto ${isSale ? 'text-black' : 'text-white'} text-xl`}>
-            {secondBtnName}
-          </Text>
+          {isImageSecond ? (
+            secondBtnName
+          ) : (
+            <Text
+              style={tw`m-auto ${
+                isSale ? 'text-black' : 'text-white'
+              } text-xl`}>
+              {secondBtnName}
+            </Text>
+          )}
         </TouchableOpacity>
       </View>
     </View>

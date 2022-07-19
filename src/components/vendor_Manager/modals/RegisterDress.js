@@ -64,8 +64,6 @@ const RegisterDress = ({
     setMainPriceSale ? setMainPriceSale(mainPriceSale) : null;
     setDressModalVisible(false);
     setColorId ? setColorId(color) : null;
-    // console.warn('color', color);
-    // console.warn('all ', all);
     setSelectedShleftId ? setSelectedShleftId(shleft) : null;
     setSelectedShleftName ? setSelectedShleftName(shleftName) : null;
   };
@@ -79,7 +77,6 @@ const RegisterDress = ({
       },
     })
       .then(res => {
-        // console.warn('dresslar galdi');
         if (res.data.length === dressList.length) {
           return null;
         } else {
@@ -103,8 +100,6 @@ const RegisterDress = ({
   const [typeImage1, setTypeImage1] = useState('');
 
   const [selectedDressImg, setSelectedDressImg] = useState();
-
-  // const [selectedDressImgU, setSelectedDressImg] = useState();
 
   const [selectedDressImgModalVisible, setSelectedDressImgModalVisible] =
     useState(false);
@@ -182,15 +177,12 @@ const RegisterDress = ({
   const formDataImg = new FormData();
 
   const createDress = async () => {
-    // console.warn(token);
     if (dressName && Number(mainPrice)) {
       setShowLoading(true);
-      // console.log(dressName, mainPrice);
       formDataImg.append('name', dressName);
       formDataImg.append('price', mainPrice);
       formDataImg.append('user', userId);
       formDataImg.append('note', dressNote);
-      // console.warn('shleft =>', shleftId);
       formDataImg.append('shleft', shleftId);
       formDataImg.append('color', selectedColorId);
 
@@ -224,8 +216,6 @@ const RegisterDress = ({
         setNameImage1('');
         setTypeImage1('');
       } else {
-        // console.warn(token);
-        // console.warn('error', res);
         setShowLoading(false);
         setTimeout(() => {
           Alert.alert('Bazada xatolik');
