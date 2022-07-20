@@ -64,6 +64,7 @@ const CostsRegister = () => {
     setNarxi();
     setNote();
     setCurrent();
+    setMaskedPrice();
   };
 
   const getBalanceById = async () => {
@@ -148,33 +149,29 @@ const CostsRegister = () => {
   };
 
   const sendReport = async () => {
-    if (balanceByUser[0]?.balance_uz || balanceByUser[0]?.balance_us) {
-      // company: balanceByUser[0]?.company?.id,
-      if (balanceByUser[0]?.company) {
-        dataReport.company = balanceByUser[0]?.company?.id;
-      } else {
-        console.warn('dataReport => ', dataReport);
-      }
-      const sendedReportResult = await axios.post(
-        mainUrl + 'dashboard/balance/reported/create/',
-        dataReport,
-        {
-          headers: {
-            Authorization: `token ${token}`,
-          },
-        },
-      );
-
-      if (sendedReportResult.status === 201) {
-        clearAllHooks();
-        Alert.alert('Ishlatildi');
-        getBalanceById();
-        setModalReportVisible(false);
-      } else {
-        Alert.alert('Bazaga ulanishda xatolik!');
-      }
+    // company: balanceByUser[0]?.company?.id,
+    if (balanceByUser[0]?.company) {
+      dataReport.company = balanceByUser[0]?.company?.id;
     } else {
-      Alert.alert('Balansingiz mavjud emas!');
+      console.warn('dataReport => ', dataReport);
+    }
+    const sendedReportResult = await axios.post(
+      mainUrl + 'dashboard/balance/reported/create/',
+      dataReport,
+      {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      },
+    );
+
+    if (sendedReportResult.status === 201) {
+      clearAllHooks();
+      Alert.alert('Jo`natildi, Biroz kuting!');
+      getBalanceById();
+      setModalReportVisible(false);
+    } else {
+      Alert.alert('Bazaga ulanishda xatolik!');
     }
   };
 
@@ -339,6 +336,8 @@ const CostsRegister = () => {
                 value={maskedPrice}
                 onChangeText={text => {
                   setNarxi(text);
+                  // text.replace(/ /g, '');
+                  console.warn(text);
                   text
                     ? setMaskedPrice(spacify(Number(text.replace(/ /g, ''))))
                     : setMaskedPrice(0);

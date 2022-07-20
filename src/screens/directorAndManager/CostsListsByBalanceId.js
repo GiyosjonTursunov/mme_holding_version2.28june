@@ -20,6 +20,7 @@ import {
   SwipeButtonsContainer,
   SwipeProvider,
 } from 'react-native-swipe-item';
+import {spacify} from '../../helpers/spacify';
 
 const CostsListsByBalanceId = ({route, navigation}) => {
   const {balance_id} = route.params;
@@ -118,7 +119,7 @@ const CostsListsByBalanceId = ({route, navigation}) => {
       <View style={tw`w-full h-9 border-b flex-row justify-between my-2 px-5`}>
         <Text style={tw`text-lg my-auto`}>{name}</Text>
 
-        <Text style={tw`text-lg my-auto`}>{value}</Text>
+        <Text style={tw`text-lg my-auto`}>{value} </Text>
       </View>
     );
   };
@@ -181,10 +182,10 @@ const CostsListsByBalanceId = ({route, navigation}) => {
                 {item?.types === 'Serio' || item?.types === 'Prochi' ? (
                   <>
                     <Text style={tw`mx-auto text-red-600`}>
-                      {item?.price_uz} sum
+                      {spacify(Number(item?.price_uz))} sum
                     </Text>
                     <Text style={tw`mx-auto text-red-600`}>
-                      {item?.price_us} 💵
+                      {spacify(Number(item?.price_us))} 💵
                     </Text>
                   </>
                 ) : null}
@@ -218,7 +219,7 @@ const CostsListsByBalanceId = ({route, navigation}) => {
 
                       <SelectedItemView
                         name={'Soni : '}
-                        value={selectedItem?.count}
+                        value={spacify(Number(selectedItem?.count))}
                       />
 
                       <SelectedItemView
@@ -228,7 +229,9 @@ const CostsListsByBalanceId = ({route, navigation}) => {
 
                       <SelectedItemView
                         name={'Narxi : '}
-                        value={`${selectedItem?.price_uz} sum ${selectedItem?.price_us} 💵`}
+                        value={`${spacify(
+                          Number(selectedItem?.price_uz),
+                        )} sum ${spacify(Number(selectedItem?.price_us))} 💵`}
                       />
 
                       <Text style={tw`text-lg mx-auto`}>
