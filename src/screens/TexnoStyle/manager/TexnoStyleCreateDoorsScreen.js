@@ -14,6 +14,7 @@ import {useSelector} from 'react-redux';
 import * as ImagePicker from 'react-native-image-picker';
 import {ImagePickerModal} from '../../../modals/image-picker-modal';
 import {mainUrl} from '../../../config/apiUrl';
+import LoadingLottie from '../../../components/global/LoadingLottie';
 
 const TexnoStyleCreateDoorsScreen = () => {
   const [dressImgChooseModalVisible, setDressImgChooseModalVisible] =
@@ -32,6 +33,9 @@ const TexnoStyleCreateDoorsScreen = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [count, setCount] = useState('');
+
+  const [showLoading, setShowLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const onImageLibraryPress = useCallback(() => {
     const options = {
@@ -52,11 +56,15 @@ const TexnoStyleCreateDoorsScreen = () => {
 
   const createDoor = async () => {
     if (name && price) {
-      formData.append('img', {
-        uri: uriImage,
-        type: typeImage,
-        name: nameImage,
-      });
+      setShowLoading(true);
+      if (uriImage) {
+        formData.append('img', {
+          uri: uriImage,
+          type: typeImage,
+          name: nameImage,
+        });
+      }
+      // console.warn('helo');
       formData.append('name', name);
       formData.append('price', price);
       formData.append('count', count);
@@ -70,16 +78,40 @@ const TexnoStyleCreateDoorsScreen = () => {
           Authorization: `token ${token}`,
         },
       });
+      setShowLoading(false);
+      console.log('if oldin ');
       if (res.status === 201) {
-        Alert.alert("Eshik qo'shildi");
+        setTimeout(() => {
+          setShowSuccess(true);
+        }, 800);
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 2000);
         setNameImage('');
         setUriImage('');
         setTypeImage('');
-        return;
+        setName('');
+        setPrice('');
+        setCount('');
+        console.error('nimasi bu endi nima qilamiz');
+      } else {
+        setTimeout(() => {
+          setShowSuccess(true);
+        }, 800);
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 2000);
       }
     } else {
-      Alert.alert("Iltimos, majburiy ma'lumotlarni to'g'ri to'ldiring");
-      return;
+      Alert.alert('Заполните все поля');
+      // console.error('Toliq emas ');
+      // setTimeout(() => {
+      //   setShowSuccess(true);
+      // }, 800);
+      // setTimeout(() => {
+      //   setShowSuccess(false);
+      // }, 2000);
+      // return;
     }
   };
 
@@ -89,6 +121,7 @@ const TexnoStyleCreateDoorsScreen = () => {
         placeholder="Eshik nomi"
         style={tw`border w-11/12 h-13 mx-auto my-2 rounded-xl pl-5g border-gray-500`}
         onChangeText={setName}
+        value={name}
       />
 
       <TextInput
@@ -96,6 +129,7 @@ const TexnoStyleCreateDoorsScreen = () => {
         style={tw`border w-11/12 h-13 mx-auto my-2 rounded-xl pl-5 border-gray-500`}
         onChangeText={setPrice}
         keyboardType="numeric"
+        value={price}
       />
 
       <View style={tw`w-11/12 flex-row mx-auto justify-between`}>
@@ -104,6 +138,7 @@ const TexnoStyleCreateDoorsScreen = () => {
           style={tw`border w-5/12 h-13 my-2 rounded-xl pl-5 border-gray-500`}
           onChangeText={setCount}
           keyboardType="numeric"
+          value={count}
         />
 
         <TouchableOpacity
@@ -129,6 +164,18 @@ const TexnoStyleCreateDoorsScreen = () => {
         source={{uri: uriImage}}
         style={tw`w-full h-65 my-2`}
         resizeMode="contain"
+      />
+
+      <LoadingLottie
+        animation={require('../../../../assets/lottie/loading-bubbles.json')}
+        setShowLoading={setShowLoading}
+        showLoading={showLoading}
+      />
+
+      <LoadingLottie
+        animation={require('../../../../assets/lottie/success.json')}
+        setShowLoading={setShowSuccess}
+        showLoading={showSuccess}
       />
 
       <TouchableOpacity
