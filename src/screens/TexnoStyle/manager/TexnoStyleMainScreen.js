@@ -59,7 +59,7 @@ const TexnoStyleMainScreen = () => {
         setRefreshing(false);
       })
       .catch(_err => {
-        // console.error('errorku texno-style/doors-append-history =>', err);
+        // console.error('errorku texno-style/doors-append-history =>', _err);
         setRefreshing(false);
       });
 

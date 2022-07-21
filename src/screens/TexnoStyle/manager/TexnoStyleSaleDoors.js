@@ -50,10 +50,9 @@ const TexnoStyleSaleDoors = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [count, setCount] = useState('');
-  // console.log(token);
 
   const saleDoor = async () => {
-    let url = `${mainUrl}texno-style/doors-sale-history/`;
+    let url = `${mainUrl}texno-style/doors/sale-history/`;
     let dataBuyDoor = {
       price: Number(price),
       count: Number(count),

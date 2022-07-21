@@ -137,8 +137,8 @@ android {
         applicationId "com.mmecrm.giyosjon"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 34
-        versionName "2.4.16"
+        versionCode 36
+        versionName "2.4.18"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
         if (isNewArchitectureEnabled()) {

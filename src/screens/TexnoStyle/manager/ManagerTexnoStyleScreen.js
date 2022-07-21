@@ -15,7 +15,7 @@ const ManagerTexnoStyleScreen = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={tw`flex-1 bg-white`}>
-      <Header headerName={'TexnoStyle'} />
+      {/* <Header headerName={'TexnoStyle'} /> */}
       <ThreeBtn
         firstBtnName={'Asosiy'}
         firstBtnNavigation={() => navigation.navigate('TexnoStyleMainScreen')}

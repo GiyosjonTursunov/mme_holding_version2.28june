@@ -125,7 +125,7 @@ const CostsRegister = () => {
       } else {
         dataCostsCreate.general = true;
       }
-      console.warn('dataCostsCreate => ', dataCostsCreate);
+      // console.warn('dataCostsCreate => ', dataCostsCreate);
       const sendedCostResult = await axios.post(
         mainUrl + 'dashboard/balance/cost/create/',
         dataCostsCreate,
@@ -335,9 +335,8 @@ const CostsRegister = () => {
                 style={tw`border w-6.5/12 my-2 h-13 rounded-2xl pl-3 text-base border-[rgba(0,0,0,0.5)]`}
                 value={maskedPrice}
                 onChangeText={text => {
-                  setNarxi(text);
-                  // text.replace(/ /g, '');
-                  console.warn(text);
+                  setNarxi(Number(text.replace(/ /g, '')));
+
                   text
                     ? setMaskedPrice(spacify(Number(text.replace(/ /g, ''))))
                     : setMaskedPrice(0);

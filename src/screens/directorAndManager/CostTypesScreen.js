@@ -21,6 +21,7 @@ import {useSelector} from 'react-redux';
 import axios from 'axios';
 import {mainUrl} from '../../config/apiUrl';
 import {spacify} from '../../helpers/spacify';
+import ThreeBtn from '../../components/global/ThreeBtn';
 
 const CostTypesScreen = ({route}) => {
   const {token, userId} = useSelector(state => state.userReducer);
@@ -145,7 +146,23 @@ const CostTypesScreen = ({route}) => {
           )
         }
       />
-      <DoubleBtn
+      <ThreeBtn
+        firstBtnName={'Xarajatlar'}
+        firstBtnNavigation={getCostsByBalanceId}
+        secondBtnName={
+          <Image
+            source={require('../../../assets/plus.png')}
+            resizeMode="contain"
+            style={tw`w-10.5 h-10.5 m-auto`}
+          />
+        }
+        secondBtnNavigation={() => navigation.navigate('CostsRegister')}
+        thirdBtnName={'TexnoStyle'}
+        thirdBtnNavigation={() =>
+          navigation.navigate('ManagerTexnoStyleScreen')
+        }
+      />
+      {/* <DoubleBtn
         firstBtnName={'Xarajatlar'}
         firstBtnFunction={getCostsByBalanceId}
         secondBtnName={
@@ -157,7 +174,7 @@ const CostTypesScreen = ({route}) => {
         }
         secondBtnFunction={() => navigation.navigate('CostsRegister')}
         isImageSecond
-      />
+      /> */}
 
       <View style={tw`mb-2`} />
 

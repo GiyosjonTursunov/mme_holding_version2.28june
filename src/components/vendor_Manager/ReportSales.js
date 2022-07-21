@@ -40,7 +40,7 @@ const ReportSales = () => {
       },
     })
       .then(res => {
-        console.warn(res.data);
+        // console.warn(res.data);
         setMainPrice(res.data.main_price);
         setGivenPrice(res.data.given_price);
         setLeftPrice(res.data.left_price);
