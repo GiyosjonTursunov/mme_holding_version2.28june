@@ -60,7 +60,6 @@ const OrderDress = () => {
   const [createdDressGalleryId, setCreatedDressGalleryId] = useState();
 
   const [showLoading, setShowLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     if (wsVendorManagerSale) {
@@ -154,10 +153,6 @@ const OrderDress = () => {
       );
 
       setShowLoading(false);
-
-      setTimeout(() => {
-        setShowSuccess(true);
-      }, 500);
     } else {
       Alert.alert("To'liq kiriting!");
     }
