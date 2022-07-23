@@ -22,6 +22,7 @@ import {mainUrl} from '../../../config/apiUrl';
 
 import * as ImagePicker from 'react-native-image-picker';
 import {ImagePickerModal} from '../../../modals/image-picker-modal';
+import LoadingLottie from '../../global/LoadingLottie';
 
 const OrderDress = () => {
   const {token, userId, magazineId, wsVendorManagerSale, role} = useSelector(
@@ -56,20 +57,10 @@ const OrderDress = () => {
   const [uriImage1, setUriImage1] = useState('');
   const [typeImage1, setTypeImage1] = useState('');
 
-  const dataForOrder = {
-    dress: dressId,
-    color: selectedColorId,
-    detail: selectedShleftId,
-    main_price: mainPrice,
-    left_price: leftPrice,
-    date_left_price: moneyGiveDate,
-    mortgage: givenPrice,
-    note: note,
-    salon: salonId,
-    delivery_date: deliveryDate,
-    user: userId,
-    magazine: magazineId,
-  };
+  const [createdDressGalleryId, setCreatedDressGalleryId] = useState();
+
+  const [showLoading, setShowLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     if (wsVendorManagerSale) {
@@ -85,9 +76,11 @@ const OrderDress = () => {
         setSalonId('');
         setNote('');
         setSelectedShleftName('');
+        setUriImage1('');
       };
 
       wsVendorManagerSale.onmessage = e => {
+        console.warn('hello order');
         const data = JSON.parse(e.data);
 
         if (data.type === 'saved_sale') {
@@ -132,7 +125,25 @@ const OrderDress = () => {
     );
   }, []);
 
-  const sendOrder = () => {
+  const dataForOrder = {
+    dress: dressId,
+    color: selectedColorId,
+    detail: selectedShleftId,
+    main_price: mainPrice,
+    left_price: leftPrice,
+    date_left_price: moneyGiveDate,
+    mortgage: givenPrice,
+    note: note,
+    salon: salonId,
+    delivery_date: deliveryDate,
+    user: userId,
+    magazine: magazineId,
+    dress_gallery: createdDressGalleryId,
+  };
+
+  const formDataImg = new FormData();
+
+  const orderSendFunc = () => {
     if (dressId && moneyGiveDate && givenPrice && deliveryDate) {
       wsVendorManagerSale.send(
         JSON.stringify({
@@ -141,8 +152,42 @@ const OrderDress = () => {
           data: dataForOrder,
         }),
       );
+
+      setShowLoading(false);
+
+      setTimeout(() => {
+        setShowSuccess(true);
+      }, 500);
     } else {
       Alert.alert("To'liq kiriting!");
+    }
+  };
+
+  const sendOrder = () => {
+    setShowLoading(true);
+    // formDataImg.append('name', dressName);
+    formDataImg.append('img', {
+      uri: uriImage1,
+      type: typeImage1,
+      name: nameImage1,
+    });
+    // http://127.0.0.1:8000/lastoria/dress-gallery/
+    if (uriImage1) {
+      axios
+        .post(`${mainUrl}lastoria/dress-gallery/`, formDataImg, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `token ${token}`,
+          },
+        })
+        .then(({data}) => {
+          console.warn(data);
+          setCreatedDressGalleryId(data.id);
+          orderSendFunc();
+        })
+        .catch(err => console.error(err));
+    } else {
+      orderSendFunc();
     }
   };
 
@@ -156,6 +201,11 @@ const OrderDress = () => {
 
   return (
     <ScrollView style={tw`flex-1 bg-white`}>
+      <LoadingLottie
+        animation={require('../../../../assets/lottie/loading-bubbles.json')}
+        setShowLoading={setShowLoading}
+        showLoading={showLoading}
+      />
       <KeyboardAvoidingView behavior="position">
         <View style={tw`mt-[3%]`}>
           <RegisterDress
@@ -362,7 +412,18 @@ const OrderDress = () => {
             style={tw`w-9/12 h-20 border text-base font-semibold rounded-xl border-[rgba(0,0,0,0.5)] mx-auto px-2`}
           />
 
-          <TouchableOpacity style={tw`w-2.5/12 h-20 border rounded-2xl p-1`}>
+          <TouchableOpacity
+            style={tw`w-2.5/12 h-20 border border-[rgba(0,0,0,0.5)] rounded-2xl p-1`}
+            onPress={() => setDressImg1ChooseModalVisible(true)}>
+            {uriImage1 ? (
+              <Image
+                source={{uri: uriImage1}}
+                style={tw`w-full h-full`}
+                resizeMode="contain"
+              />
+            ) : (
+              <Text style={tw`m-auto text-xl`}>Rasm</Text>
+            )}
             <ImagePickerModal
               isVisible={dressImg1ChooseModalVisible}
               onClose={() => setDressImg1ChooseModalVisible(false)}
@@ -373,14 +434,6 @@ const OrderDress = () => {
             />
           </TouchableOpacity>
         </View>
-
-        <TextInput
-          multiline
-          placeholder="Qo'shimcha ma'lumotlar"
-          value={note}
-          onChangeText={setNote}
-          style={tw`w-11/12 h-20 border text-base font-semibold rounded-xl border-[rgba(0,0,0,0.5)] mx-auto my-[2%] px-2 py-2`}
-        />
 
         <View
           style={tw`w-11/12 flex-row justify-between items-center mx-auto my-[2%]`}>
